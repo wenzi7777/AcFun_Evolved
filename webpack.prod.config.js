@@ -1,17 +1,25 @@
 const path = require('path')
 const WebpackUserscript = require('webpack-userscript')
+const webpack = require('webpack')
+const {GitRevisionPlugin} = require('git-revision-webpack-plugin');
+const gitRevisionPlugin = new GitRevisionPlugin();
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 
 module.exports = {
     mode: 'production',
     entry: {
-        AcFunEvolved: './src/core/AcFunEvolved.ts'
+        core: './src/core/core.ts'
     },
     output: {
+        publicPath: path.resolve(__dirname, 'dist'),
         path: path.resolve(__dirname, 'dist'),
         filename: `acfun-evolved.min.user.js`
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        fallback: {
+            fs: false
+        }
     },
     devtool: 'source-map',
     devServer: {
@@ -63,7 +71,7 @@ module.exports = {
                     {
                         loader: 'ejs-loader',
                         options: {
-                            esModule: false,
+                            esModule: true,
                             variable: 'data'
                         }
                     }
@@ -74,8 +82,26 @@ module.exports = {
     plugins: [
         new WebpackUserscript({
             headers: {
-                version: `[version]`
-            }
-        })
+                'name': 'AcFun Evolved',
+                'description': '一个强大的AcFun增强脚本！',
+                // 'updateURL': 'https://github.com/wenzi7777/AcFun-Evolved/raw/main/dist/acfun-evolved.min.user.js',
+                // 'downloadURL': 'https://github.com/wenzi7777/AcFun-Evolved/raw/main/dist/acfun-evolved.min.user.js',
+                'version': `[version]-build.[buildNo]`,
+                'author': 'Nick Hsu',
+                'copyright': '(c) 2023 NickHsu[nickhsu@1205.moe], made with LOVE!',
+                'license': 'MPL-2.0',
+                'match': `*://*.acfun.cn/*`,
+                'run-at': 'document-start',
+                'grant': ['unsafeWindow', 'GM_getValue', 'GM_setValue', 'GM_deleteValue', 'GM_info', 'GM_xmlhttpRequest'],
+                'connect': ['raw.githubusercontent.com', 'github.com', 'localhost', '*'],
+                'icon': 'https://raw.githubusercontent.com/wenzi7777/AcFun-Evolved/main/src/assets/favicon.png',
+                'icon64': 'https://raw.githubusercontent.com/wenzi7777/AcFun-Evolved/main/src/assets/favicon.png',
+            },
+        }),
+        new webpack.DefinePlugin({
+            ACFUN_EVOLVED_VERSION: `"${require('./package.json').version}"`,
+            GIT_HASH: JSON.stringify(gitRevisionPlugin.version()),
+        }),
+        new NodePolyfillPlugin()
     ]
 }
