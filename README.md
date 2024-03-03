@@ -28,6 +28,11 @@
 # 注意事项
 - AcFun Evolved安装后默认不带任何功能，请前往「控制面板」 -》 「ACE Store」安装功能或者自行编写功能。
 
+# 贡献者
+<a href="https://github.com/wenzi7777/AcFun-Evolved/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=wenzi7777/AcFun-Evolved" />
+</a>
+
 # 推荐配置
 
 此脚本对网页性能影响较大。
