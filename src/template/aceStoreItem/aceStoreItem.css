@@ -1,0 +1,143 @@
+.aceStoreItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #eeeeee;
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.aceStoreItemUpper {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.aceStoreItemIcon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aceStoreItemTitles {
+    display: flex;
+    flex-direction: column;
+}
+
+.aceStoreItemTitles h2 {
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+}
+
+.aceStoreItemTitles p {
+    font-size: 14px;
+    color: #333333;
+}
+
+.aceStoreItemActions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.aceStoreItemActions button {
+    border: none;
+    padding: 3px 7px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.aceStoreItemActions .install {
+    background-color: #fd4c5d;
+    color: #fff;
+    border: none;
+    padding: 3px 7px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.aceStoreItemActions .uninstall {
+    background-color: #fff;
+    color: #333;
+    border: none;
+    padding: 3px 7px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.aceStoreItemActions .website {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 3px 7px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.aceStoreItemLower {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.aceStoreItemInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #eeeeee;
+    border-radius: 3px;
+    padding: 10px 5px;
+}
+
+.aceStoreItemInfoWrapper h3 {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 600;
+    text-align: center;
+}
+
+.aceStoreItemInfoWrapper p {
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+}
+
+.aceStoreItem.aceDark {
+    background-color: #545454;
+}
+
+.aceStoreItem.aceDark .aceStoreItemActions .install {
+    background-color: #333;
+    color: #fff;
+}
+
+.aceStoreItem.aceDark .aceStoreItemTitles h2 {
+    color: #fff;
+}
+
+.aceStoreItem.aceDark .aceStoreItemTitles p {
+    color: #eee;
+}
+
+.aceStoreItem.aceDark .aceStoreItemInfoWrapper {
+    background-color: rgba(51, 51, 51, 0);
+}
+
+.aceStoreItem.aceDark .aceStoreItemInfoWrapper h3, .aceStoreItem.aceDark .aceStoreItemInfoWrapper p {
+    color: #eee;
+}

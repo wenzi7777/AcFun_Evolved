@@ -1,0 +1,35 @@
+<div class="aceRuntimeBridgeSettingsPanel <%= data.theme %>">
+    <div class="aceRuntimeBridgeSettingsPanelHeader">
+        <div class="aceRuntimeBridgeSettingsPanelHeaderTitle">ACE调试桥设置</div>
+    </div>
+    <div class="aceRuntimeBridgeSettingsPanelContent">
+        <div class="aceRuntimeBridgeSettingsSection">
+            <div class="aceRuntimeBridgeSettingsPanelOption">
+                <label for="bridged">Debug Bridge 状态</label>
+                <div>
+                    <select id="bridged">
+                        <option value="enabled">启用</option>
+                        <option value="disabled">禁用</option>
+                    </select>
+                </div>
+            </div>
+            <div class="aceRuntimeBridgeSettingsPanelOption">
+                <label for="timing">插件载入时机</label>
+                <div>
+                    <select id="timing">
+                        <option value="normal">正常</option>
+                        <option value="delayed">延后</option>
+                    </select>
+                </div>
+            </div>
+            <div class="aceRuntimeBridgeSettingsPanelOption">
+                <label for="connect">连接</label>
+                <input type="text" id="connect" placeholder="输入连接信息">
+            </div>
+        </div>
+    </div>
+    <div class="aceRuntimeBridgeSettingsPanelActionsWrapper">
+        <button id="confirm">保存并重载</button>
+        <button id="cancel">放弃更改</button>
+    </div>
+</div>

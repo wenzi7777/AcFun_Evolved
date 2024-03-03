@@ -1,0 +1,52 @@
+.aceSideMenu {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.aceSideMenuButton {
+    background-color: #eeeeee;
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 27;
+    position: relative;
+    left: -60%;
+    transition: left .2s ease-out, rotate .2s ease-out;
+    margin: 20px 0;
+    rotate: 45deg;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.aceSideMenuButton:hover {
+    left: 0;
+    rotate: 0deg;
+}
+
+.aceSideMenuIcon path {
+    fill: #fd4c5d;
+}
+
+.aceSideMenu.aceLight .aceSideMenuButton {
+    background-color: #eeeeee;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.aceSideMenu.aceLight .aceSideMenuIcon path {
+    fill: #fd4c5d;
+}
+
+.aceSideMenu.aceDark .aceSideMenuButton {
+    background-color: #333;
+    box-shadow: 0 4px 6px rgba(253, 76, 93, 0.1);
+}
+
+.aceSideMenu.aceDark .aceSideMenuIcon path {
+    fill: #eee;
+}

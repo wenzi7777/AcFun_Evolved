@@ -1,0 +1,66 @@
+.aceShortcut {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color .2s ease-out;
+}
+
+.aceShortcutIcon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aceShortcutTitle {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.aceShortcutBridgeHint {
+    color: #fd4c5d;
+    animation: hint 5s infinite;
+    transition: color .2s ease-out;
+}
+
+@keyframes hint {
+    0% {
+        color: white;
+    }
+
+    33% {
+        color: #fd4c5d;
+    }
+
+    66% {
+        color: #333333;
+    }
+
+    99% {
+        color: white;
+    }
+}
+
+.aceShortcut.aceLight:hover {
+    background-color: #eeeeee;
+}
+
+.aceShortcut.aceLight .aceShortcutTitle {
+    color: #333;
+}
+
+.aceShortcut.aceDark:hover {
+    background-color: #424242;
+}
+
+.aceShortcut.aceDark .aceShortcutTitle {
+    color: #fff;
+}

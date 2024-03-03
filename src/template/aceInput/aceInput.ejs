@@ -1,0 +1,5 @@
+<div class="aceInput <%= data.theme %>">
+    <label for="<%= data.settingsId %>" <%= data.theme === 'aceDark' ? `style="color: #eeeeee"` : ''%>>
+        <%= data.label %>: <input id="<%= data.settingsId %>" name="<%= data.settingsId %>" value="<%= data.value %>" type="<%= data.inputType %>">
+    </label>
+</div>

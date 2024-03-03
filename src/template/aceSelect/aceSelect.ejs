@@ -1,0 +1,10 @@
+<div class="aceSelect <%= data.theme %>">
+    <label <%= data.theme === 'aceDark' ? `style="color: #eeeeee"` : ''%> for="<%= data.settingId %>"><%= data.label %></label>
+    <div>
+        <select id="<%= data.settingId %>">
+            <% for (let i = 0; i < data.options.length; i++) {%>
+                <option <%= data.options[i].selected ? 'selected' : '' %> value="<%= data.options[i].value %>" <%= data.options[i].selected ? 'selected' : '' %>><%= data.options[i].label %></option>
+            <% } %>
+        </select>
+    </div>
+</div>

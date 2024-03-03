@@ -1,0 +1,18 @@
+<div class="aceStore <%= data.theme %>">
+    <div class="aceStoreHeader">
+        <h1><%= data.manifest.name %></h1>
+        <button id="close">×</button>
+    </div>
+    <div class="aceStoreMain">
+        <div class="aceStoreView">
+
+        </div>
+        <div class="aceStoreInfo">
+            version <%= data.manifest.version %> | <%= data.manifest.id%><br>
+        </div>
+    </div>
+    <div class="aceStoreActions">
+        <button id="site">官方网站</button>
+        <button id="about">关于 <%= data.manifest.name %></button>
+    </div>
+</div>

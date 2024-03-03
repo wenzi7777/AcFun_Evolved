@@ -1,0 +1,11 @@
+<div class="aceSelect <%= data.theme %>">
+    <label <%= data.theme === 'aceDark' ? `style="color: #eeeeee"` : ''%>><%= data.label %></label>
+    <div>
+        <% data.options.forEach((option, index) => { %>
+            <div>
+                <input type="radio" id="<%= data.id %>-<%= index %>" name="<%= data.id %>" value="<%= option.value %>" <%= option.selected ? 'checked' : '' %>>
+                <label <%= data.theme === 'aceDark' ? `style="color: #eeeeee"` : ''%> for="<%= data.id %>-<%= index %>"><%= option.label %></label>
+            </div>
+        <% }) %>
+    </div>
+</div>
