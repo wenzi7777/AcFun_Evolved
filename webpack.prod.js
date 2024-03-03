@@ -16,7 +16,12 @@ module.exports = {
         minimize: true,
         minimizer: [
             new TerserPlugin({
-                extractComments: false
+                terserOptions: {
+                    output: {
+                        comments: /==\/?UserScript==|^[ ]?@|eslint-disable|spell-checker/i,
+                    },
+                },
+                extractComments: false,
             }),
         ],
     },
