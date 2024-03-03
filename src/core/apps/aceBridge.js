@@ -38,7 +38,7 @@ export const manifest = {
     requestedAPI: [],
     author: 'Nick Hsu',
     id: '@wenzi7777/ace_runtime_bridge',
-    website: 'https://acfun-evolved.1205.moe/'
+    website: 'https://ace.1205.moe/'
 }
 
 export const openAceBridge = async (dashboardCloseInfo) => {

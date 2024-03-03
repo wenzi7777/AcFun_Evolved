@@ -42,7 +42,7 @@ export const smallManifest = {
     requestedAPI: [],
     author: 'Nick Hsu',
     id: '@wenzi7777/ace_store',
-    website: 'https://acfun-evolved.1205.moe/'
+    website: 'https://ace.1205.moe/'
 }
 
 export const manifest = smallManifest
