@@ -8,7 +8,7 @@
 
 - [安装](#安装)
 - [插件仓库](https://github.com/wenzi7777/AcFun-Evolved-Plugins)
-- [开发者文档（待编写）]
+- [开发者工具箱](https://github.com/wenzi7777/ACE-DeveloperKit)
 - [LICENSE](LICENSE.md)
 
 # 安装
