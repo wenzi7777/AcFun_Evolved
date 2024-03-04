@@ -135,28 +135,22 @@ export const saveTombstones = (tombstones) => {
 }
 
 export const ferryman = async () => {
-    // 提取的执行逻辑函数
     const executeTombstones = async (currentUrl) => {
         let tombstones = getTombstones();
         for (const tombstone of tombstones) {
-            // 如果已经执行过，跳过当前墓碑
             if (tombstone.executed) continue;
 
-            const {self, args, manifest} = tombstone; // 解构出必要的属性
+            const {self, args, manifest} = tombstone;
             if (manifest.matches && manifest.matches.length > 0) {
-                const requiredPatterns = manifest.matches.flatMap(key => pageList[key] || []); // 根据matches数组获取需要的URL模式数组
+                const requiredPatterns = manifest.matches.flatMap(key => pageList[key] || []);
 
-                // 检查当前URL是否与任一模式相匹配
                 const isMatch = requiredPatterns.some(pattern => pattern.test(currentUrl));
                 if (isMatch) {
                     try {
                         console.log('executed' + manifest.id)
-                        // 如果当前URL与模式匹配，则执行对应的插件
                         const targetFunction = new Function(...args.map(arg => arg.name), 'manifest', 'getSelfPreference', self);
                         // const targetFunction = new Function(...args.map(arg => arg.name), 'manifest', `(()=>{"use strict";(async(a,e,o,c)=>{let n;setTimeout(async() => {console.log(await o(c))}, 3000);"aceLight"===await o(c)&&(console.log("light"),n=await a("#header {\\n    background-color: #ff0000;\\n}",c)),"aceDark"===await o(c)&&(console.log("dark"),n=await a("#header {\\n    background-color: #333333;\\n}",c)),console.log(n)})(injectCss,removeCss,currentThemeClass,manifest)})();`);
-                        // 执行这个新创建的函数，传入实际参数
                         targetFunction(...args.map(arg => arg.target), manifest, getSelfPreference);
-                        // 标记为已执行
                         tombstone.executed = true;
                     } catch (e) {
                         console.error(`Error ferrying plugin ${manifest.id}:`, e);
@@ -167,20 +161,16 @@ export const ferryman = async () => {
                 }
             }
         }
-        // 更新墓碑数组以保存执行状态
         saveTombstones(tombstones);
     };
 
-    // 立即执行一次检查
     await executeTombstones(window.location.href);
 
-    // 监听URL变化，再次执行检查
     urlChange(async (currentUrl) => {
         await executeTombstones(currentUrl);
     });
 
 };
-
 
 export const initializePluginExecutionAndSetTrigger = async () => {
     const installedPlugins = await getInstalledPlugins();
@@ -207,12 +197,12 @@ export const initializePluginExecutionAndSetTrigger = async () => {
                 await openDialog('插件无法载入', `插件「${manifest.id}」请求了一个未定义的API「${apiName}」，因此拒绝载入此插件。`, true, () => {
                 }, () => {
                 });
-                allApisDefined = false; // 标记发现未定义的API
+                allApisDefined = false;
                 return undefined;
             }
         }));
 
-        if (!allApisDefined) continue; // 如果发现未定义的API，跳过当前插件的进一步处理
+        if (!allApisDefined) continue;
 
         const filteredArgs = args.filter(arg => arg !== undefined);
         if (filteredArgs.length === manifest.requestedAPIs.length) {
@@ -234,7 +224,6 @@ export const initializePluginExecutionAndSetTrigger = async () => {
     saveTombstones(__tombstones);
     await ferryman();
 };
-
 
 export const createShortcut = async (dashboardAceUuid, dashboardCloseInfo) => {
     let installedPlugins = await getInstalledPlugins()
@@ -308,7 +297,6 @@ export const extractAndInstallPlugin = async (compressData, aceStoreAceUuid) => 
         await openDialog('插件安装被取消', `插件的安装被取消。`, true);
     });
 };
-
 
 export const uninstallPlugin = async (manifestOrBigManifest, loaderRootAceUuid) => {
     let id = manifestOrBigManifest.id.original ? manifestOrBigManifest.id.original : manifestOrBigManifest.id

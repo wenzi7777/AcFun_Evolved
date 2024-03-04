@@ -1,6 +1,11 @@
 import {getTimestamp} from "./time";
 import {browserDownload} from "./networking";
 
+/**
+ * 存储小型JSON「LocalStorage」
+ * @param k - key
+ * @param v - JSON
+ */
 export const localSet = (k, v) => {
     localStorage.setItem(keyConstructor(k), JSON.stringify({
         value: JSON.stringify(v),
@@ -8,6 +13,11 @@ export const localSet = (k, v) => {
     }))
 }
 
+/**
+ * 获取小型JSON「LocalStorage」
+ * @param k - key
+ * @returns {Object}
+ */
 export const localGet = (k) => {
     const item = localStorage.getItem(keyConstructor(k));
     if (item) {
@@ -23,10 +33,19 @@ export const localGet = (k) => {
     }
 };
 
+/**
+ * 删除小型JSON「LocalStorage」
+ * @param k - key
+ */
 export const localRemove = (k) => {
     localStorage.removeItem(keyConstructor(k))
 }
 
+/**
+ * 存储大型JSON「TamperMonkey」
+ * @param k - key
+ * @param v - JSON
+ */
 export const largeSet = async (k, v) => {
     if (!GM_setValue) {
         console.error('Cannot resolve function GM_setValue')
@@ -41,6 +60,10 @@ export const largeSet = async (k, v) => {
     }))
 }
 
+/**
+ * 获取大型JSON「TamperMonkey」
+ * @param k - key
+ */
 export const largeGet = async (k) => {
     if (!GM_getValue) {
         console.error('Cannot resolve function GM_getValue');
@@ -64,6 +87,10 @@ export const largeGet = async (k) => {
 };
 
 
+/**
+ * 删除大型JSON「TamperMonkey」
+ * @param k - key
+ */
 export const largeRemove = async (k) => {
     if (!GM_deleteValue) {
         console.error('Cannot resolve function GM_deleteValue')
@@ -86,6 +113,9 @@ export const keyConstructor = (k) => {
     return `${k}`;
 }
 
+/**
+ * 清除大型JSON存储器「TamperMonkey」
+ */
 export const clearMonkey = () => {
     if (!GM_listValues) {
         console.error('Cannot resolve function GM_listValues')
@@ -97,10 +127,16 @@ export const clearMonkey = () => {
     })
 }
 
+/**
+ * 清除小型JSON存储器「LocalStorage」
+ */
 export const clearLocal = () => {
     localStorage.clear()
 }
 
+/**
+ * 导出大型JSON存储器「TamperMonkey」
+ */
 export const exportMonkey = () => {
     if (!GM_listValues) {
         console.error('Cannot resolve function GM_listValues')
@@ -114,6 +150,10 @@ export const exportMonkey = () => {
     browserDownload(result, `monkey.ace.${getTimestamp()}.json`)
 }
 
+/**
+ * 导入大型JSON存储器「TamperMonkey」
+ * @param data - Array
+ */
 export const importMonkey = (data) => {
     if (!GM_setValue) {
         console.error('Cannot resolve function GM_setValue')
@@ -124,6 +164,9 @@ export const importMonkey = (data) => {
     })
 }
 
+/**
+ * 导出小型对象存储器「LocalStorage」
+ */
 export const exportLocal = () => {
     const result = {};
     for (let i = 0; i < localStorage.length; i++) {
@@ -133,12 +176,19 @@ export const exportLocal = () => {
     browserDownload(result, `local.ace.${getTimestamp()}.json`)
 }
 
+/**
+ * 导入小型JSON存储器「LocalStorage」
+ * @param data - Array
+ */
 export const importLocal = (data) => {
     Object.keys(data).forEach(k => {
         localStorage.setItem(k, data[k])
     })
 }
 
+/**
+ * 导出所有类型的存储器
+ */
 export const exportAll = () => {
     if (!GM_listValues) {
         console.error('Cannot resolve function GM_listValues')
@@ -160,6 +210,10 @@ export const exportAll = () => {
     }, `all.ace.${getTimestamp()}.json`)
 }
 
+/**
+ * 导入所有类型的存储器
+ * @param data - {monkey: [{}], local: [{}]}
+ */
 export const importAll = (data) => {
     if (!GM_setValue) {
         console.error('Cannot resolve function GM_setValue')

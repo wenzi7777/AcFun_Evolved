@@ -107,10 +107,8 @@ export const updateTraces = async () => {
 }
 
 export const setupTracker = async () => {
-    // Define a callback function to handle mutations
     const handleMutations = (mutationsList, observer) => {
         for (const mutation of mutationsList) {
-            // Handle added nodes
             mutation.addedNodes.forEach((node) => {
                 if (node.dataset && node.dataset.aceUuid) {
                     const aceUuid = node.dataset.aceUuid;
@@ -132,7 +130,6 @@ export const setupTracker = async () => {
                 }
             });
 
-            // Handle removed nodes
             mutation.removedNodes.forEach((node) => {
                 if (node.dataset && node.dataset.aceUuid) {
                     const aceUuid = node.dataset.aceUuid;
@@ -144,7 +141,6 @@ export const setupTracker = async () => {
         }
     };
 
-    // Start observing the document body for child additions or removals
     if((await getRuntimeSettings()).general.observeMode === 'normal') {
         mutationObserve(['body'], {childList: true, subtree: true}, handleMutations);
     }else {

@@ -10,7 +10,7 @@ import {openAboutPanel} from "../../api/aboutPanel";
 import {openDialog} from "../../api/dialog";
 import {clearLocal, clearMonkey, exportAll, importAll} from "../../api/storage";
 import {browserUploadAsArrayBuffer, browserUploadAsText, monkey} from "../../api/networking";
-import {extractAndInstallPlugin, installPlugin, uninstallPlugin} from "./pluginToolkit";
+import {extractAndInstallPlugin, installPlugin} from "./pluginToolkit";
 import bridgeSettingsStyleCode from "../../template/bridgeSettings/bridgeSettings.css"
 import bridgeSettingsEjsTemplate from "../../template/bridgeSettings/bridgeSettings.ejs"
 import {getBridgeSettings, saveBridgeSettings} from "../settings";
@@ -156,16 +156,13 @@ export const openBridgeSettingsPanel = async (acedbCloseInfo) => {
 }
 
 export const syncBridgeSettingsToView = (settings, aceUuid) => {
-    // 定位到特定的节点，假设aceNodeLocating函数可以根据aceUuid找到对应的DOM节点
     let node = aceNodeLocating(aceUuid);
 
-    // 确保找到了节点
     if (!node) {
         console.error('Unable to locate node for UUID:', aceUuid);
         return;
     }
 
-    // 更新 "Debug Bridge 开启" 选项
     const bridgedSelect = node.querySelector('#bridged');
     if (bridgedSelect) {
         bridgedSelect.value = settings.bridged || 'disabled'; // 默认为 'disabled' 如果没有设置
@@ -173,7 +170,6 @@ export const syncBridgeSettingsToView = (settings, aceUuid) => {
         console.warn('Bridged select not found');
     }
 
-    // 更新 "插件载入时机" 选项
     const timingSelect = node.querySelector('#timing');
     if (timingSelect) {
         timingSelect.value = settings.timing || 'normal'; // 默认为 'normal' 如果没有设置
@@ -181,7 +177,6 @@ export const syncBridgeSettingsToView = (settings, aceUuid) => {
         console.warn('Timing select not found');
     }
 
-    // 更新 "连接" 输入框
     const connectInput = node.querySelector('#connect');
     if (connectInput) {
         connectInput.value = settings.connect || ''; // 默认为空字符串如果没有设置
@@ -200,7 +195,6 @@ export const syncViewToBridgeSettings = async (aceUuid) => {
 
     let newSettings = {};
 
-    // 读取 "Debug Bridge 开启" 选项的值
     const bridgedSelect = node.querySelector('#bridged');
     if (bridgedSelect) {
         newSettings.bridged = bridgedSelect.value;
@@ -208,7 +202,6 @@ export const syncViewToBridgeSettings = async (aceUuid) => {
         console.warn('Bridged select not found');
     }
 
-    // 读取 "插件载入时机" 选项的值
     const timingSelect = node.querySelector('#timing');
     if (timingSelect) {
         newSettings.timing = timingSelect.value;
@@ -216,7 +209,6 @@ export const syncViewToBridgeSettings = async (aceUuid) => {
         console.warn('Timing select not found');
     }
 
-    // 读取 "连接" 输入框的值
     const connectInput = node.querySelector('#connect');
     if (connectInput) {
         newSettings.connect = connectInput.value;

@@ -1,3 +1,22 @@
+/**
+ *
+ * 此页面的部分代码来自于或修改于 Bilibili Evolved 的ajax.ts。
+ * 原代码以MIT协议开源，作者是  "author": "Grant Howard, Coulomb-G"
+ *
+ * The MIT License (MIT)
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ----------
+ *
+ * 本脚本使用了这些代码，现以MPL-2.0开源修改后的代码。
+ *
+ * ACE的开源许可见 ./LICENSE.md
+ *
+ * Nick Hsu 于 2024/03/04 注
+ */
+
 const send = (config) => {
     const xhr = new XMLHttpRequest()
     const {isText = true, body} = config(xhr)
@@ -7,12 +26,12 @@ const send = (config) => {
         xhr.send(body)
     })
 }
+
 const withCredentials = (config) => (xhr) => {
     xhr.withCredentials = true
     return config(xhr)
 }
 
-// GET
 const blobRequest = (url) => (xhr) => {
     xhr.responseType = 'blob'
     xhr.open('GET', url)
@@ -20,11 +39,13 @@ const blobRequest = (url) => (xhr) => {
         isText: false,
     }
 }
+
 /**
  * 获取二进制`Blob`对象
  * @param url 链接
  */
 export const getBlob = (url) => send(blobRequest(url))
+
 /**
  * 获取二进制`Blob`对象(带身份验证)
  * @param url 链接
@@ -38,6 +59,7 @@ const textRequest = (url) => (xhr) => {
         isText: true,
     }
 }
+
 /**
  * 获取文本
  * @param url 链接
@@ -58,12 +80,14 @@ const jsonRequest = (url) => (xhr) => {
         isText: false,
     }
 }
+
 const convertToJson = (response) => {
     if (typeof response === 'string') {
         return JSON.parse(response)
     }
     return response
 }
+
 /**
  * 获取 JSON 对象
  * @param url 链接
@@ -72,6 +96,7 @@ export const getJson = async (url) => {
     const response = await send(jsonRequest(url))
     return convertToJson(response)
 }
+
 /**
  * 获取 JSON 对象(带身份验证)
  * @param url 链接
@@ -81,7 +106,6 @@ export const getJsonWithCredentials = async (url) => {
     return convertToJson(response)
 }
 
-// POST
 /**
  * 发送文本 (`application/x-www-form-urlencoded`)
  * @param url 链接
@@ -96,6 +120,7 @@ export const postText = (url, text) =>
             body: text,
         }
     })
+
 /**
  * 发送文本 (`application/x-www-form-urlencoded`)(带身份验证)
  * @param url 链接
@@ -111,6 +136,7 @@ export const postTextWithCredentials = (url, text) =>
             body: text,
         }
     })
+
 /**
  * 发送 JSON 数据 (`application/json`)
  * @param url 链接
@@ -125,6 +151,7 @@ export const postJson = (url, json) =>
             body: JSON.stringify(json),
         }
     })
+
 /**
  * 发送 JSON 数据 (`application/json`)(带身份验证)
  * @param url 链接
@@ -188,12 +215,10 @@ export const browserDownload = (object, filename) => {
 }
 
 export const browserUploadAsText = (callback) => {
-    // 创建一个隐藏的input元素用于文件上传
     const input = document.createElement('input');
     input.type = 'file';
     input.style.display = 'none';
 
-    // 当用户选择文件后处理文件
     input.addEventListener('change', (event) => {
         const file = event.target.files[0];
         if (!file) {
@@ -201,28 +226,23 @@ export const browserUploadAsText = (callback) => {
             return;
         }
 
-        // 使用FileReader读取文件内容
         const reader = new FileReader();
         reader.onload = (e) => {
-            // 调用callback函数并传递文件内容
             callback({content: e.target.result, file});
         };
-        reader.readAsText(file); // 读取文件作为文本
+        reader.readAsText(file);
     });
 
-    // 触发文件选择
     document.body.appendChild(input);
     input.click();
     document.body.removeChild(input);
 };
 
 export const browserUploadAsArrayBuffer = (callback) => {
-    // 创建一个隐藏的input元素用于文件上传
     const input = document.createElement('input');
     input.type = 'file';
     input.style.display = 'none';
 
-    // 当用户选择文件后处理文件
     input.addEventListener('change', (event) => {
         const file = event.target.files[0];
         if (!file) {
@@ -230,16 +250,13 @@ export const browserUploadAsArrayBuffer = (callback) => {
             return;
         }
 
-        // 使用FileReader读取文件内容
         const reader = new FileReader();
         reader.onload = (e) => {
-            // 调用callback函数并传递文件内容
             callback({content: e.target.result, file});
         };
         reader.readAsArrayBuffer(file);
     });
 
-    // 触发文件选择
     document.body.appendChild(input);
     input.click();
     document.body.removeChild(input);

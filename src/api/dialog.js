@@ -4,6 +4,15 @@ import {injectCss, injectHTML} from "./inject";
 import {aceNodeLocating, closePanel, toggleAnimation} from "./ace";
 import {currentThemeClass} from "./theme";
 
+/**
+ * 打开模态框
+ * @param title - 标题
+ * @param content - 内容
+ * @param isNotice - 是否是通知
+ * @param onConfirm - 按下「好」后执行的操作
+ * @param onCancel - 按下「取消」后执行的操作
+ * @returns {null}
+ */
 export const openDialog = async (title, content, isNotice = true, onConfirm = () => {}, onCancel = () => {}) => {
     let styleAceUuid = await injectCss(styleCode)
     let htmlCode = dialogEjsTemplate({

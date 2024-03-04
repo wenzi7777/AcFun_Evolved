@@ -78,6 +78,7 @@ export const channelUrls = [
     /^\/\/www\.acfun\.cn\/u\/(\d+)/
 ]
 
+// 页面汇总
 export const pageList = {
     "*": [...favoriteUrls, ...videoPlayerUrls, ...bangumiPlayerUrls, ...livePlayerUrls, ...liveUrls, ...bangumiListUrls, ...mainSiteUrls, ...rankingListUrls, ...faceCatcherUrls, ...downloadAppUrls, ...memberUrls, ...uploadCenterUrls, ...messageUrls, ...feedsUrls, ...channelUrls],
     "favorite": favoriteUrls,

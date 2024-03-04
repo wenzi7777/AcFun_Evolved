@@ -10,9 +10,8 @@ export const psv = async (signature, data) => {
     const originalHash = signatureInfo.split('|')[4];
     const signatureBuffer = new Uint8Array(Array.from(atob(signatureBase64), c => c.charCodeAt(0)));
 
-    const publicKey = await importPublicKey(PUBLIC_KEY); // 确保已实现这个函数
+    const publicKey = await importPublicKey(PUBLIC_KEY);
 
-    // 注意：这里直接使用原始数据进行验证
     const isVerified = await verifySignature(publicKey, dataBuffer, signatureBuffer);
 
     return isVerified && originalHash === dataHash;

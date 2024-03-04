@@ -10,10 +10,9 @@ import {largeGet, largeSet} from "../api/storage";
 import {openDialog} from "../api/dialog";
 import {openAboutPanel} from "../api/aboutPanel";
 import {openDashboard} from "./dashboard";
-import {uninstallPlugin} from "./apps/pluginToolkit";
 
 export const initSideMenu = async () => {
-    let sideMenuStyleAceUuid = await injectCss(sideMenuStyleCode)
+    await injectCss(sideMenuStyleCode)
     let htmlCode = sideMenuEjsTemplate({
         theme: await currentThemeClass()
     })

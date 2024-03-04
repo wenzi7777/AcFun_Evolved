@@ -1,5 +1,9 @@
 import {getRuntimeSettings, saveRuntimeSettings} from "../core/settings";
 
+/**
+ * 获取当前的主题的class类名
+ * @returns {string} - 类名
+ */
 export const currentThemeClass = async () => {
     let settings = await getRuntimeSettings()
     if (settings.view.theme === 'aceAuto') {
@@ -8,12 +12,20 @@ export const currentThemeClass = async () => {
     return settings.view.theme
 }
 
+/**
+ * 设置为亮色主题
+ * @returns {null}
+ */
 export const setToLight = async () => {
     let settings = await getRuntimeSettings()
     settings.view.theme = 'aceLight'
     await saveRuntimeSettings(settings)
 }
 
+/**
+ * 设置为暗色主题
+ * @returns {null}
+ */
 export const setToDark = async () => {
     let settings = await getRuntimeSettings()
     settings.view.theme = 'aceDark'
@@ -23,17 +35,18 @@ export const setToDark = async () => {
 export const sunriseTime = "06:00";
 export const sunsetTime = "18:00";
 
+/**
+ * 依照 Beijing/Taipei/HongKong/Macao 标准时间，以定义好的日出日落时间，自动计算当前的主题
+ * @returns {string} - 当前主题类名
+ */
 export const autoTheme = () => {
-    // 获取当前时间
     const now = new Date();
     const currentTime = now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0');
 
-    // 将字符串时间转换为日期对象，以便比较
     const sunriseDate = new Date(now.toDateString() + ' ' + sunriseTime);
     const sunsetDate = new Date(now.toDateString() + ' ' + sunsetTime);
     const currentDate = new Date(now.toDateString() + ' ' + currentTime);
 
-    // 判断当前时间是否在日落之后或日出之前
     if (currentDate >= sunsetDate || currentDate <= sunriseDate) {
         return 'aceDark'
     } else {
