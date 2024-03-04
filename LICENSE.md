@@ -7,7 +7,7 @@
 使用本项目即表示您同意MPL 2.0协议，需遵守以下要求：
 
 1. 分发本项目代码的任何副本时，必须包含本「LICENSE.md」文件。
-2. 分发包含内置功能（.ace）的任何版本时，也必须附带本「LICENSE.md」文件。
+2. 分发包含内置功能的任何版本时，也必须附带本「LICENSE.md」文件。
 s
 ## 繁體中文版
 
@@ -16,7 +16,7 @@ s
 使用本項目即表示您同意 MPL 2.0 協議，需遵守以下要求：
 
 1. 分發本項目代碼的任何副本時，必須包含本「LICENSE.md」文件。
-2. 分發包含內建功能（.ace）的任何版本時，也必須附帶本「LICENSE.md」文件。
+2. 分發包含內建功能的任何版本時，也必須附帶本「LICENSE.md」文件。
 
 ## English Version
 
@@ -25,7 +25,7 @@ The project "AcFun Evolved" is distributed under the **Mozilla Public License 2.
 By using this project, you agree to the MPL 2.0 license and are required to follow these conditions:
 
 1. Any distribution of this project's code must include this "LICENSE.md" file.
-2. Any distribution of versions that contain built-in functions (.ace) must also include this "LICENSE.md" file.
+2. Any distribution of versions that contain built-in functions must also include this "LICENSE.md" file.
 
 ## Full MPL 2.0 License
 
