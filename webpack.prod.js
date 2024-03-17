@@ -78,10 +78,10 @@ module.exports = {
         }),
         new webpack.BannerPlugin({
             banner:
-`// ==UserScript==
+                `// ==UserScript==
 // @name            AcFun Evolved
 // @description     一个强大的AcFun脚本管理器
-// @version         ${require('./package.json').version + JSON.stringify(gitRevisionPlugin.version())}
+// @version         ${require('./package.json').version + ' ' + JSON.stringify(gitRevisionPlugin.version())}
 // @author          Nick Hsu
 // @copyright       2024, Nick Hsu(wenzi7777@1205.moe)
 // @license         MPL 2.0

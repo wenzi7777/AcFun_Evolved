@@ -16,6 +16,7 @@ import bridgeSettingsEjsTemplate from "../../template/bridgeSettings/bridgeSetti
 import {getBridgeSettings, saveBridgeSettings} from "../settings";
 import bridgeHintStyleCode from "../../template/bridgeHint/bridgeHint.css"
 import bridgeHintEjsTemplate from "../../template/bridgeHint/bridgeHint.ejs"
+import {getTimestamp} from "../../api/time";
 
 export const loadAceBridge = async (dashboardAceUuid, dashboardCloseInfo) => {
     let dashboardNode = aceNodeLocating(dashboardAceUuid)
@@ -232,7 +233,7 @@ export const runBridge = async () => {
         console.info('[ACE调试桥] 下载插件')
         let rawJSON = await monkey({
             method: 'GET',
-            url: settings.connect,
+            url: `${settings.connect}?t=${getTimestamp()}`,
             responseType: 'text'
         });
         rawJSON = JSON.parse(rawJSON)

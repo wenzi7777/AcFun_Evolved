@@ -315,7 +315,7 @@ export const sizeChange = (target, callback) =>
 /**
  * 设置一个全局监听器以监视URL的变化。当检测到URL变化时，将触发一个自定义事件`urlChange`。
  * 此监听器是通过检查document.URL的变化来实现的，并利用`allMutations`函数来触发检查机制。
- * 此函数设计为只执行一次（使用_.once包装），以避免多次添加相同的事件监听器。
+ * 此函数设计为只执行一次
  */
 const setupUrlChangeListener = _.once(() => {
     let lastUrl = window.location.href; // 使用 window.location.href 获取完整的 URL

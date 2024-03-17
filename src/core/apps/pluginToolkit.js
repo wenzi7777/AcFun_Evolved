@@ -1,8 +1,8 @@
 import {getRuntimeSettings} from "../settings";
 import {psv} from "../security";
 import {openDialog} from "../../api/dialog";
-import {largeGet, largeSet} from "../../api/storage";
-import {injectCss, injectHTML, removeCss} from "../../api/inject";
+import {largeGet, largeRemove, largeSet, localGet, localRemove, localSet} from "../../api/storage";
+import {injectCss, injectHTML, injectScript, removeCss, removeHTML, removeScript} from "../../api/inject";
 import {
     aceNodeLocating,
     addLoader,
@@ -15,10 +15,28 @@ import {
 } from "../../api/ace";
 import shortcutEjsTemplate from "../../template/shortcut/shortcut.ejs";
 import {currentThemeClass} from "../../api/theme";
-import {urlChange} from "../../api/supervisor";
+import {
+    allMutations,
+    allMutationsOn,
+    attributes,
+    attributesSubtree, characterData, characterDataSubtree,
+    childList,
+    childListSubtree, intersectionObserve,
+    mutationObserve, resizeObserve, sizeChange,
+    urlChange, urlWatchdog, videoChange, visible, visibleInside
+} from "../../api/supervisor";
 import {pageList} from "../../api/url";
 import {GET_PLUGIN_LATEST_VERSION_DOWNLOAD_URL} from "../../../config";
-import {monkey} from "../../api/networking";
+import {
+    browserDownload, browserUploadAsArrayBuffer, browserUploadAsText,
+    getBlob,
+    getBlobWithCredentials,
+    getJson,
+    getJsonWithCredentials,
+    getText,
+    getTextWithCredentials,
+    monkey, postJson, postJsonWithCredentials, postText, postTextWithCredentials
+} from "../../api/networking";
 import pako from "pako";
 import {untar} from "untar.js";
 import pluginPanelEjsTemplate from "../../template/pluginPanel/pluginPanel.ejs"
@@ -29,6 +47,9 @@ import aceRadioEjsTemplate from "../../template/aceRadio/aceRadio.ejs"
 import aceInputEjsTemplate from "../../template/aceInput/aceInput.ejs"
 import {openAboutPanel} from "../../api/aboutPanel";
 import {manifest} from "./aceStore";
+import {getIsoTime, getReadableTime, getTimestamp} from "../../api/time";
+import {raiseLifeCycleEvent} from "../lifeCycle";
+import {getTrackedHtmlList, getTrackedScriptList, getTrackedStyleList} from "../trace";
 
 export let _tombstones = []
 
@@ -143,7 +164,6 @@ export const ferryman = async () => {
             const {self, args, manifest} = tombstone;
             if (manifest.matches && manifest.matches.length > 0) {
                 const requiredPatterns = manifest.matches.flatMap(key => pageList[key] || []);
-
                 const isMatch = requiredPatterns.some(pattern => pattern.test(currentUrl));
                 if (isMatch) {
                     try {
@@ -178,9 +198,60 @@ export const initializePluginExecutionAndSetTrigger = async () => {
     if (installedPlugins.length === 0) return;
 
     const apiImplementations = {
+        'openDialog': openDialog,
+        'injectHTML': injectHTML,
+        'removeHTML': removeHTML,
         'injectCss': injectCss,
         'removeCss': removeCss,
-        'currentThemeClass': currentThemeClass
+        'injectScript': injectScript,
+        'removeScript': removeScript,
+        'getBlob': getBlob,
+        'getBlobWithCredentials': getBlobWithCredentials,
+        'getText': getText,
+        'getTextWithCredentials': getTextWithCredentials,
+        'getJson': getJson,
+        'getJsonWithCredentials': getJsonWithCredentials,
+        'postText': postText,
+        'postTextWithCredentials': postTextWithCredentials,
+        'postJson': postJson,
+        'postJsonWithCredentials': postJsonWithCredentials,
+        'monkey': monkey,
+        'browserDownload': browserDownload,
+        'browserUploadAsText': browserUploadAsText,
+        'browserUploadAsArrayBuffer': browserUploadAsArrayBuffer,
+        'localSet': localSet,
+        'localGet': localGet,
+        'localRemove': localRemove,
+        'largeSet': largeSet,
+        'largeGet': largeGet,
+        'largeRemove': largeRemove,
+        'mutationObserve': mutationObserve,
+        'childList': childList,
+        'childListSubtree': childListSubtree,
+        'attributes': attributes,
+        'attributesSubtree': attributesSubtree,
+        'characterData': characterData,
+        'characterDataSubtree': characterDataSubtree,
+        'allMutationsOn': allMutationsOn,
+        'allMutations': allMutations,
+        'intersectionObserve': intersectionObserve,
+        'visible': visible,
+        'visibleInside': visibleInside,
+        'resizeObserve': resizeObserve,
+        'sizeChange': sizeChange,
+        'urlChange': urlChange,
+        'urlWatchdog': urlWatchdog,
+        // 'videoChange': videoChange 待实现
+        'currentThemeClass': currentThemeClass,
+        'getTimestamp': getTimestamp,
+        'getIsoTime': getIsoTime,
+        'getReadableTime': getReadableTime,
+        'raiseLifeCycleEvent': raiseLifeCycleEvent,
+        'getRuntimeSettings': getRuntimeSettings,
+        'getTrackedHtmlList': getTrackedHtmlList,
+        'getTrackedStyleList': getTrackedStyleList,
+        'getTrackedScriptList': getTrackedScriptList,
+
     };
 
     for (const installedPlugin of installedPlugins) {
