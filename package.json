@@ -1,6 +1,6 @@
 {
   "name": "acfun-evolved",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "What a powerful, useful and lovely acfun script manager!!",
   "main": "dist/acfun.evolved.bundle.min.user.js",
   "scripts": {

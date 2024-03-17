@@ -14,6 +14,7 @@ export const checkSelfUpdate = async () => {
         responseType: 'text'
     })
     let latestVersion = JSON.parse(raw).version
+
     return {
         updatable: ACE_VERSION === latestVersion,
         latestVersion
@@ -30,8 +31,8 @@ export const checkPluginsUpdate = async () => {
     let updatablePlugins = []
     for (let pluginData of pluginsData) {
         for (let installedPlugin of installedPlugins) {
-            if (pluginData.id === installedPlugin.id) {
-                if (pluginData.latestVersion !== installedPlugin.version) {
+            if (pluginData.id === installedPlugin.manifest.id) {
+                if (pluginData.latestVersion !== installedPlugin.manifest.version) {
                     updatablePlugins.push({latestRelease: pluginData, currentRelease: installedPlugin})
                 }
             }
@@ -59,7 +60,7 @@ export const checkAllUpdate = async () => {
         });
     } else {
         if (pluginsUpdate.length > 0) {
-            await openDialog('发现更新', `插件${pluginsUpdate[0].currentRelease.id}可以更新了，新的版本号是: ${pluginsUpdate[0].latestRelease.latestVersion}。您的版本号是: ${pluginsUpdate[0].currentRelease.version}`, false, async () => {
+            await openDialog('发现更新', `插件${pluginsUpdate[0].currentRelease.manifest.id}可以更新了，新的版本号是: ${pluginsUpdate[0].latestRelease.latestVersion}。您的版本号是: ${pluginsUpdate[0].currentRelease.manifest.version}`, false, async () => {
                 await updatePlugin(pluginsUpdate[0]);
             });
         }

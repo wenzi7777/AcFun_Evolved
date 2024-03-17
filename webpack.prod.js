@@ -98,6 +98,7 @@ module.exports = {
 // @connect         wenzi7777.github.io
 // @connect         cdn.jsdelivr.net
 // @connect         ace-plugins.1205.moe
+// @connect         ace.1205.moe
 // @connect         github.com
 // @connect         localhost
 // @connect         *
