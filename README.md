@@ -44,4 +44,4 @@
 - 内存: 4GB或以上
 - 脚本管理器: Tampermonkey 4.14 / Violentmonkey 2.13
 - 显卡: GeForce GTX 1050 / Apple M1 以上
-- 网络: 80mbps或以上
+- 网络: 50mbps或以上
