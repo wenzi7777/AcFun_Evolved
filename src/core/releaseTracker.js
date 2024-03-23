@@ -61,7 +61,7 @@ export const checkAllUpdate = async () => {
     } else {
         if (pluginsUpdate.length > 0) {
             await openDialog('发现更新', `插件${pluginsUpdate[0].currentRelease.manifest.id}可以更新了，新的版本号是: ${pluginsUpdate[0].latestRelease.latestVersion}。您的版本号是: ${pluginsUpdate[0].currentRelease.manifest.version}`, false, async () => {
-                await updatePlugin(pluginsUpdate[0]);
+                await updatePlugin(pluginsUpdate[0].currentRelease.manifest);
             });
         }
     }
