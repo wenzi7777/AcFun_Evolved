@@ -4,7 +4,7 @@
 一个强大的 AcFun 脚本载入器
 </div>
 
-![GitHub file size in bytes](https://img.shields.io/github/size/wenzi7777/AcFun_Evolved/tree/v2/dist/acfun.evolved.bundle.min.user.js?label=ACE%20V2%20Runtime%20Size)
+![GitHub file size in bytes](https://img.shields.io/github/size/wenzi7777/AcFun_Evolved/v2/dist/acfun.evolved.bundle.min.user.js?label=ACE%20V2%20Runtime%20Size)
 
 - [安装](#安装)
 - [开发者说明](#开发者说明)
@@ -14,7 +14,7 @@
 
 # 安装
 
-### 我们刚完成AcFun Evolved的开发，可能还有许多未经测试的Bug，并不稳定，如果你遇到Bug，请提交Issue。
+### AcFun Evolved Runtime V2 仍处于开发阶段，请等待发布第一个开发者测试版本。
 
 需要浏览器装有 [Tampermonkey](https://tampermonkey.net/) 插件。
 
@@ -31,16 +31,20 @@
 
 # 开发者说明
 
-***AcFun Evolved Runtime，经历过一次重构。***
+- AcFun Evolved Runtime，经历过一次重构。
+
 **v1版本已经弃用，请安装v2版本。**
 
-***关于查看已弃用的v1版本源代码***
+- 关于查看已弃用的v1版本源代码
+
 **请切换到v1 branch**
 
-***关于查看正在更新的v2版本源代码***
+- 关于查看正在更新的v2版本源代码
+
 **请切换到v2 branch(已设为默认分支)**
 
-***关于开源许可证变更***
+- 关于开源许可证变更
+
 **ACE V1的许可证为MPL 2.0, ACE V2的许可证已变更为MIT。**
 
 # 贡献者
