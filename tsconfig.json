@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "h",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "preact": ["node_modules/preact/dist/preact.module.js"],
+      "preact/*": ["node_modules/preact/dist/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "src/types/**/*.d.ts",
+    "node_modules/preact/src/internal.d.ts",
+    "node_modules/preact/src/internal.d.ts",
+    "node_modules/preact/src/internal.d.ts"
+  ]
+}

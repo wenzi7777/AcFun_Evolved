@@ -1,0 +1,65 @@
+.aceSizer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, 0) scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease-out, transform .2s ease-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.aceSizer.ani {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.aceSizerFilled {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.aceSizerFilled:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.aceSizerDragHandler {
+    width: 1vw;
+    height: 1vw;
+    max-width: 16px;
+    max-height: 16px;
+    background-color: #888;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    cursor: move;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color .2s ease-out, box-shadow 0.3s ease-in-out;
+}
+
+.aceSizerDragHandler:hover {
+    background-color: #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* 黑夜模式样式 */
+.aceSizer.aceDark .aceSizerFilled {
+    background-color: rgba(48, 58, 65, 1);
+    box-shadow: 0 4px 8px rgba(48, 58, 65, .5);
+}
+
+.aceSizer.aceDark .aceSizerFilled:hover {
+    box-shadow: 0 8px 16px rgba(48, 58, 65, .7);
+}
+
+.aceSizer.aceDark .aceSizerDragHandler {
+    background-color: #555;
+}
+
+.aceSizer.aceDark .aceSizerDragHandler:hover {
+    background-color: #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}

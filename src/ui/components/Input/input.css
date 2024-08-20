@@ -1,0 +1,41 @@
+.aceInputWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.aceInputLabel {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.aceInput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.aceInput:focus {
+    border-color: #007aff;
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+    outline: none;
+}
+
+/* 黑夜模式样式 */
+.aceInputWrapper.aceDark .aceInputLabel {
+    color: #f7f7f7;
+}
+
+.aceInputWrapper.aceDark .aceInput {
+    background-color: #333335;
+    border: 1px solid #444;
+    color: #f7f7f7;
+}
+
+.aceInputWrapper.aceDark .aceInput:focus {
+    border-color: #007aff;
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+}

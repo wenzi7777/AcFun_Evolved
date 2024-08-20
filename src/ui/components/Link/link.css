@@ -1,0 +1,25 @@
+.aceLinkWrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.aceLink {
+    font-size: 16px;
+    color: #007aff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.aceLink:hover {
+    color: #005bb5;
+}
+
+/* 黑夜模式样式 */
+.aceLinkWrapper.aceDark .aceLink {
+    color: #5ac8fa; /* 在黑夜模式下使用较浅的蓝色 */
+}
+
+.aceLinkWrapper.aceDark .aceLink:hover {
+    color: #007aff;
+}

@@ -1,0 +1,52 @@
+.aceVideoWrapper {
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.aceVideoWrapper:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.aceVideoPlayer {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    outline: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.aceVideoPlayer::-webkit-media-controls-panel {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.aceVideoPlayer::-webkit-media-controls-play-button,
+.aceVideoPlayer::-webkit-media-controls-pause-button,
+.aceVideoPlayer::-webkit-media-controls-mute-button,
+.aceVideoPlayer::-webkit-media-controls-volume-slider,
+.aceVideoPlayer::-webkit-media-controls-timeline {
+    filter: invert(1);
+}
+
+/* 黑夜模式样式 */
+.aceVideoWrapper.aceDark {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.aceVideoWrapper.aceDark:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+.aceVideoWrapper.aceDark .aceVideoPlayer::-webkit-media-controls-panel {
+    background-color: #333335;
+}
+
+.aceVideoWrapper.aceDark .aceVideoPlayer::-webkit-media-controls-play-button,
+.aceVideoWrapper.aceDark .aceVideoPlayer::-webkit-media-controls-pause-button,
+.aceVideoWrapper.aceDark.aceVideoPlayer::-webkit-media-controls-mute-button,
+.aceVideoWrapper.aceDark.aceVideoPlayer::-webkit-media-controls-volume-slider,
+.aceVideoWrapper.aceDark.aceVideoPlayer::-webkit-media-controls-timeline {
+    filter: invert(0.8);
+}

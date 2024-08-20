@@ -1,0 +1,73 @@
+.acePaginationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.acePaginationButton {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.acePaginationButton:disabled {
+    background-color: #c7c7cc;
+    cursor: not-allowed;
+}
+
+.acePaginationInfo {
+    font-size: 16px;
+    color: #000;
+}
+
+.aceIconChevronLeft:before,
+.aceIconChevronRight:before {
+    content: '';
+    display: inline-block;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    padding: 5px;
+    margin-top: 2px;
+}
+
+.aceIconChevronLeft:before {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.aceIconChevronRight:before {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+/* 黑夜模式样式 */
+.acePaginationContainer.aceDark {
+    background-color: #1c1c1e;
+}
+
+.acePaginationContainer.aceDark .acePaginationButton {
+    background-color: #444;
+}
+
+.acePaginationContainer.aceDark .acePaginationButton:disabled {
+    background-color: #555;
+}
+
+.acePaginationContainer.aceDark .acePaginationInfo {
+    color: #f7f7f7;
+}

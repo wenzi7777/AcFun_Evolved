@@ -1,0 +1,60 @@
+.aceCheckboxWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.aceCheckboxLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+}
+
+.aceCheckbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.aceCheckbox:checked {
+    background-color: #007aff;
+    border-color: #007aff;
+}
+
+.aceCheckbox:checked::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 4px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* 黑夜模式样式 */
+.aceCheckboxWrapper.aceDark .aceCheckboxLabel {
+    color: #f7f7f7;
+}
+
+.aceCheckboxWrapper.aceDark .aceCheckbox {
+    background-color: #333335;
+    border-color: #444;
+}
+
+.aceCheckboxWrapper.aceDark .aceCheckbox:checked {
+    background-color: #007aff;
+    border-color: #007aff;
+}
+
+.aceCheckboxWrapper.aceDark .aceCheckbox:checked::before {
+    background-color: #1c1c1e;
+}

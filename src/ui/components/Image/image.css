@@ -1,0 +1,28 @@
+.aceImageWrapper {
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    background-color: #ffffff;
+}
+
+.aceImageWrapper:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.aceImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* 黑夜模式样式 */
+.aceImageWrapper.aceDark {
+    background-color: rgba(48, 58, 65, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.aceImageWrapper.aceDark:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}

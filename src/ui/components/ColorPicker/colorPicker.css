@@ -1,0 +1,39 @@
+.aceColorPickerWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.aceColorPickerLabel {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 10px;
+    color: #000;
+}
+
+.aceColorPicker {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.aceColorPicker:hover {
+    transform: scale(1.1);
+}
+
+/* 黑夜模式样式 */
+.aceColorPickerWrapper.aceDark .aceColorPickerLabel {
+    color: #f7f7f7;
+}
+
+.aceColorPickerWrapper.aceDark .aceColorPicker {
+    background-color: #1c1c1e;
+    border: 1px solid #444;
+}
+
+.aceColorPickerWrapper.aceDark .aceColorPicker:hover {
+    transform: scale(1.1);
+}

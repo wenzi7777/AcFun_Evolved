@@ -1,0 +1,42 @@
+.aceSelectWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.aceSelectLabel {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.aceSelect {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.aceSelect:focus {
+    border-color: #007aff;
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+    outline: none;
+}
+
+/* 黑夜模式样式 */
+.aceSelectWrapper.aceDark .aceSelectLabel {
+    color: #f7f7f7;
+}
+
+.aceSelectWrapper.aceDark .aceSelect {
+    background-color: #333335;
+    border: 1px solid #444;
+    color: #f7f7f7;
+}
+
+.aceSelectWrapper.aceDark .aceSelect:focus {
+    border-color: #5ac8fa;
+    box-shadow: 0 0 5px rgba(90, 200, 250, 0.5);
+    outline: none;
+}

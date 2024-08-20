@@ -1,0 +1,27 @@
+.aceTextWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.aceTextLabel {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.aceText {
+    font-size: 16px;
+    color: #000;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 黑夜模式样式 */
+.aceTextWrapper.aceDark .aceTextLabel {
+    color: #f7f7f7;
+}
+
+.aceTextWrapper.aceDark .aceText {
+    color: #f7f7f7;
+}
