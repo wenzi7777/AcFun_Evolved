@@ -4,7 +4,7 @@
 一个强大的 AcFun 脚本载入器
 </div>
 
-![GitHub file size in bytes](https://img.shields.io/github/size/wenzi7777/AcFun-Evolved/v1/dist/acfun.evolved.bundle.min.user.js?label=ACE%20Runtime%20Size)
+![GitHub file size in bytes](https://img.shields.io/github/size/wenzi7777/AcFun_Evolved/v1/dist/acfun.evolved.bundle.min.user.js?label=ACE%20Runtime%20Size)
 
 - [安装](#安装)
 - [插件仓库](https://github.com/wenzi7777/AcFun-Evolved-Plugins)
