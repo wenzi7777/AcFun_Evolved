@@ -1,10 +1,10 @@
-<div align="center"><img id="Bilibili-Evolved" width="128" alt="Bilibili Evolved" src="./images/logo.png"></div>
+<div align="center"><img id="ace" width="128" alt="ace" src="./images/logo.png"></div>
 
 <div align="center">
 一个强大的 AcFun 脚本载入器
 </div>
 
-![GitHub file size in bytes](https://img.shields.io/github/size/wenzi7777/AcFun-Evolved/dist/acfun.evolved.bundle.min.user.js?label=ACE%20Runtime%20Size)
+![GitHub file size in bytes](https://img.shields.io/github/size/wenzi7777/AcFun-Evolved/v1/dist/acfun.evolved.bundle.min.user.js?label=ACE%20Runtime%20Size)
 
 - [安装](#安装)
 - [插件仓库](https://github.com/wenzi7777/AcFun-Evolved-Plugins)
