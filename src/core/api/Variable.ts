@@ -46,11 +46,11 @@ yl8yJuhgZ/FJ6NU5dSVzRjkCAwEAAQ==
     private baseSelfRepoURL() {
         let source = Preferences.getPreference({category: 'general', k: 'source'})
         if(source === 'github') {
-            return 'https://raw.githubusercontent.com/wenzi7777/AcFun-Evolved/main/'
+            return 'https://raw.githubusercontent.com/wenzi7777/AcFun_Evolved/v2/'
         }else if(source === 'cloudflare') {
-            return 'https://acev2.1205.moe'
+            return 'https://acev2.1205.moe/'
         }else if(source === 'jsdelivr') {
-            return 'https://cdn.jsdelivr.net/gh/wenzi7777/AcFun-Evolved/@main/'
+            return 'https://cdn.jsdelivr.net/gh/wenzi7777/AcFun_Evolved@vv2/'
         }else {
             ACEV2Toast.showToast({text: I18n.t({key: 'invalid-source-please-select-again'})})
         }

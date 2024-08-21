@@ -4,12 +4,12 @@
 一个强大的 AcFun 脚本载入器
 </div>
 
-![GitHub file size in bytes](https://img.shields.io/github/size/wenzi7777/AcFun_Evolved/v2/dist/acfun.evolved.bundle.min.user.js?label=ACE%20V2%20Runtime%20Size)
+![GitHub file size in bytes](https://img.shields.io/github/size/wenzi7777/AcFun_Evolved/dist/acfun.evolved.bundle.min.user.js?label=ACE%20V2%20Runtime%20Size)
 
 - [安装](#安装)
 - [开发者说明](#开发者说明)
-- [插件仓库](https://github.com/wenzi7777/AcFun-Evolved-Plugins)
-- [开发者工具箱](https://github.com/wenzi7777/ACE-DeveloperKit)
+- [插件仓库](https://github.com/wenzi7777/acev2_plugins)
+- [开发者工具箱](https://github.com/wenzi7777/acev2_developerkit)
 - [LICENSE](LICENSE.md)
 
 # 安装
