@@ -20,11 +20,11 @@
 
 点击任意一个源的连接即可安装。
 
-| 源                         | 连接                                                                                                 |
-|---------------------------|----------------------------------------------------------------------------------------------------|
-| GitHub（更新最快，可能无法访问）       | [安装](https://github.com/wenzi7777/AcFun-Evolved/raw/v2/dist/acfun.evolved.bundle.min.user.js)      |
-| jsDelivr（CDN，大部分地区可以访问）   | [安装](https://cdn.jsdelivr.net/gh/wenzi7777/AcFun-Evolved@v2/dist/acfun.evolved.bundle.min.user.js) |
-| Cloudflare（CDN，大部分地区可以访问） | [安装](https://acev2.1205.moe/dist/acfun.evolved.bundle.min.user.js)                                 |
+| 源                         | 连接                                                                                                        |
+|---------------------------|-----------------------------------------------------------------------------------------------------------|
+| GitHub（更新最快，可能无法访问）       | [安装](https://raw.githubusercontent.com/wenzi7777/AcFun_Evolved/v2/dist/acfun.evolved.bundle.min.user.js)  |
+| jsDelivr（CDN，大部分地区可以访问）   | [安装](https://cdn.jsdelivr.net/gh/wenzi7777/AcFun_Evolved@vv2/dist/acfun.evolved.bundle.min.user.js)       |
+| Cloudflare（CDN，大部分地区可以访问） | [安装](https://acev2.1205.moe/dist/acfun.evolved.bundle.min.user.js)                                        |
 
 # 注意事项
 - AcFun Evolved安装后默认不带任何功能，请前往「启动台」 -> 「Plugin Store」安装功能或者自行编写功能。
