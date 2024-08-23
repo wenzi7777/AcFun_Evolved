@@ -18,7 +18,7 @@
 
 # 安装
 
-### AcFun Evolved Runtime V2 仍处于开发阶段，请等待发布第一个开发者测试版本。
+### AcFun Evolved Runtime V2 第一个开发者测试版本已释出，文档正在编写中。
 
 需要浏览器装有 [Tampermonkey](https://tampermonkey.net/) 插件。
 
