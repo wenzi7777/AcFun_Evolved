@@ -104,9 +104,9 @@ interface PaginationProps {
 
 interface UI {
     canvas: DataObject[],
-    tracker: tracker | tracker[],
+    tracker: tracker | tracker[] | DataObject[],
     updateCanvas: any,
-    existed: () => boolean,
-    draw: () => void,
-    destroy: () => void
+    existed: Function,
+    draw: Function,
+    destroy: Function
 }

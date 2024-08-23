@@ -1,12 +1,19 @@
 import {Manager} from "../ui/Manager";
 import I18n from "../core/api/I18n";
+import Clock from "../core/services/Clock";
 
 class ACEV2Dialog implements UI {
     canvas: DataObject[] = []
-    tracker: tracker = ''
+    tracker: DataObject[] = []
 
-    updateCanvas({title, content, okAction, cancelAction}: { title: string, content: string, okAction: Function, cancelAction?: Function }) {
-        if(cancelAction) {
+    updateCanvas({title, content, trackerTimestamp, okAction, cancelAction}: {
+        title: string,
+        content: string,
+        trackerTimestamp: number,
+        okAction: Function,
+        cancelAction?: Function
+    }) {
+        if (cancelAction) {
             this.canvas = [
                 {
                     type: 'sizer',
@@ -93,7 +100,7 @@ class ACEV2Dialog implements UI {
                                                                     text: I18n.t({key: 'cancel'}),
                                                                     actions: [async () => {
                                                                         await cancelAction()
-                                                                        this.destroy()
+                                                                        this.destroy({trackerTimestamp})
                                                                     }]
                                                                 }
                                                             ]
@@ -110,7 +117,7 @@ class ACEV2Dialog implements UI {
                                                                     text: I18n.t({key: 'ok'}),
                                                                     actions: [async () => {
                                                                         await okAction()
-                                                                        this.destroy()
+                                                                        this.destroy({trackerTimestamp})
                                                                     }]
                                                                 }
                                                             ]
@@ -126,7 +133,7 @@ class ACEV2Dialog implements UI {
                     ]
                 },
             ]
-        }else {
+        } else {
             this.canvas = [
                 {
                     type: 'sizer',
@@ -213,7 +220,7 @@ class ACEV2Dialog implements UI {
                                                                     text: I18n.t({key: 'ok'}),
                                                                     actions: [async () => {
                                                                         await okAction()
-                                                                        this.destroy()
+                                                                        this.destroy({trackerTimestamp})
                                                                     }]
                                                                 }
                                                             ]
@@ -232,35 +239,53 @@ class ACEV2Dialog implements UI {
         }
     }
 
-    existed() {
-        return this.tracker !== ''
+    existed({tracker}: { tracker: tracker }) {
+        let __existed = false
+        this.tracker.forEach(item => {
+            if (item.tracker === tracker) {
+                __existed = true
+            }
+        })
+        return __existed
     }
 
     draw() {
-        if (!this.existed()) {
-            this.updateCanvas({title: 'title', content: 'content', okAction: () => {}, cancelAction: () => {}})
-            this.tracker = Manager.renderUI({canvas: this.canvas, slot: "plugins"}) as tracker;
-        } else {
-            this.destroy()
-            this.draw()
+        let timestamp = Clock.getTimestamp() as number + Math.random()
+        this.updateCanvas({
+            title: 'title', content: 'content', trackerTimestamp: timestamp, okAction: () => {
+            }, cancelAction: () => {
+            }
+        })
+        let __tracker = Manager.renderUI({canvas: this.canvas, slot: "plugins"}) as tracker
+        this.tracker.push({
+            tracker: __tracker,
+            timestamp: timestamp
+        })
+        return __tracker
+    }
+
+    destroy({trackerTimestamp}: { trackerTimestamp: number }) {
+        let __trackerObject: any = this.tracker.find(item => item.timestamp === trackerTimestamp)
+        if (this.existed({tracker: __trackerObject.tracker})) {
+            Manager.unmountUI({tracker: __trackerObject.tracker})
+            this.tracker = this.tracker.filter(item => item.timestamp !== trackerTimestamp)
         }
     }
 
-    destroy() {
-        if (this.existed()) {
-            Manager.unmountUI({tracker: this.tracker})
-            this.tracker = ''
-        }
-    }
-
-    showDialog({title, content, okAction, cancelAction}: { title: string, content: string, okAction: Function, cancelAction?: Function }) {
-        if (!this.existed()) {
-            this.updateCanvas({title, content, okAction, cancelAction})
-            this.tracker = Manager.renderUI({canvas: this.canvas, slot: "plugins"}) as tracker;
-        } else {
-            this.destroy()
-            this.showDialog({title, content, okAction, cancelAction})
-        }
+    showDialog({title, content, okAction, cancelAction}: {
+        title: string,
+        content: string,
+        okAction: Function,
+        cancelAction?: Function
+    }) {
+        let timestamp = Clock.getTimestamp() as number + Math.random()
+        this.updateCanvas({title: title, content: content, trackerTimestamp: timestamp, okAction, cancelAction})
+        let __tracker = Manager.renderUI({canvas: this.canvas, slot: "plugins"}) as tracker
+        this.tracker.push({
+            tracker: __tracker,
+            timestamp
+        })
+        return __tracker
     }
 }
 

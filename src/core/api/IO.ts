@@ -212,8 +212,7 @@ class IO {
             title: manifest.name + ' ' + I18n.t({key: 'wants-to-open-a-new-tab'}),
             content: `${I18n.t({key: 'target-url'})}: ${url} \n ${I18n.t({key: 'source-plugin-id'})}: ${manifest.id} \n ${I18n.t({key: 'ace-v2-runtime-does-not-responsible-for-the-content'})}`,
             okAction: () => window.open(url),
-            cancelAction: () => {
-            }
+            cancelAction: () => {}
         })
     }
 }

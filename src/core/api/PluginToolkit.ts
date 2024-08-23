@@ -15,7 +15,6 @@ import {untar} from "untar.js"
 import ACEV2DOM from "./ACEV2DOM";
 import Variable from "./Variable";
 import IO from "./IO";
-import {Manager} from "../../ui/Manager";
 
 class PluginToolkit {
     private tombstones: tombstone[] = []
@@ -27,7 +26,7 @@ class PluginToolkit {
             cancelAction?: Function
         }) => ACEV2Dialog.showDialog({title, content, okAction, cancelAction}),
         showToast: ({text}: { text: string }) => ACEV2Toast.showToast({text}),
-        aceLog: {
+        ACEV2Log: {
             info: ({message}: { message: string }) => Logger.info({message}),
             success: ({message}: { message: string }) => Logger.success({message}),
             warn: ({message}: { message: string }) => Logger.warn({message}),
@@ -75,8 +74,11 @@ class PluginToolkit {
             pluginPack.enabled = true;
             installedPlugins.push(pluginPack);
             this.saveInstalledPlugins({installedPlugins});
-            ACEV2Toast.showToast({text: `插件「${pluginPack.manifest.id}」安装成功，页面将自动刷新。`});
-            setTimeout(() => location.reload(), Variable.TOAST_DURATION);
+            ACEV2Dialog.showDialog({
+                title: I18n.t({key: 'installation-succeed'}),
+                content: I18n.t({key: 'plugin'}) + ' ' + pluginPack.manifest.id + ' version' + pluginPack.manifest.versions[pluginPack.manifest.versions.length - 1] + ' ' + I18n.t({key: 'installation-succeed'}) + '. ' + I18n.t({key: 'press-ok-to-reload'}),
+                okAction: () => location.reload()
+            })
         }
     }
 
@@ -92,6 +94,20 @@ class PluginToolkit {
                 content: `插件「${id}」卸载完成，点击「好」以刷新页面。`,
                 okAction: () => location.reload()
             })
+        } catch (e) {
+            ACEV2Toast.showToast({text: `插件解除安装失败，在尝试解除安装插件「${id}」时出现错误，请再试一次。`})
+            Logger.error({message: JSON.stringify(e)})
+        }
+        ACEV2Loader.destroy()
+    }
+
+    dangerUninstallPluginWithoutReloadAndNotice({manifest}: { manifest: manifest }) {
+        let id = manifest.id
+        ACEV2Loader.draw()
+        try {
+            let installedPlugins = this.getInstalledPlugins()
+            let newInstalledPlugins = installedPlugins.filter(installedPlugin => installedPlugin.manifest.id !== id)
+            this.saveInstalledPlugins({installedPlugins: newInstalledPlugins})
         } catch (e) {
             ACEV2Toast.showToast({text: `插件解除安装失败，在尝试解除安装插件「${id}」时出现错误，请再试一次。`})
             Logger.error({message: JSON.stringify(e)})
@@ -307,6 +323,28 @@ class PluginToolkit {
             },
             cancelAction: () => ACEV2Toast.showToast({text: I18n.t({key: 'canceled'})})
         })
+    }
+
+    async dangerDownloadAndInstallPluginPackWithoutUserConfirm({manifest}: { manifest: manifest }) {
+        let fullDownloadUrl = Variable.pluginDownloadURL({manifest});
+        ACEV2Loader.draw()
+        let compressedPack = await IO.monkey({
+            method: 'GET',
+            url: fullDownloadUrl,
+            responseType: 'arraybuffer'
+        });
+        let decompressedContent;
+        try {
+            decompressedContent = pako.inflate(compressedPack as any);
+            const files = untar(decompressedContent);
+            let rawObject = files[0]
+            let pack = JSON.parse(new TextDecoder().decode(rawObject.fileData)) as pluginPack
+            await this.installPlugin({pluginPack: pack, bridged: false})
+        } catch (err) {
+            ACEV2Toast.showToast({text: I18n.t({key: 'error-extracting-and-installing-plugin-package'})});
+            console.error('解压缩失败', err);
+        }
+        ACEV2Loader.destroy()
     }
 }
 

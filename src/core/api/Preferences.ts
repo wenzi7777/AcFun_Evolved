@@ -30,13 +30,13 @@ class Preferences {
             ACEV2Storage.largeSet({
                 k: 'bridgeConfigurations',
                 v: {
-                    enabled: true,
+                    enabled: false,
                     pluginLoadOrder: 'when-body-loaded',
                     connect: 'localhost',
                 }
             })
             return {
-                enabled: true,
+                enabled: false,
                 pluginLoadOrder: 'when-body-loaded',
                 connect: 'localhost',
             }

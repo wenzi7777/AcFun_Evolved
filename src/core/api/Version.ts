@@ -38,7 +38,8 @@ class Version {
     }
 
     parseVersion({version}: {version: string}): { major: number, minor: number, patch: number, tag: versionTag } {
-        const [versionNumber, tag] = version.split(' ');
+        let versionNumber = version.split(' ')[0]
+        let tag = version.split(' ')[1] + ' ' + version.split(' ')[2]
         const [major, minor, patch] = versionNumber.split('.').map(Number);
 
         return {

@@ -4,6 +4,7 @@ import ACEV2Toast from "../../plugins/ACEV2Toast";
 import I18n from "./I18n";
 import ReleaseTracker from "./ReleaseTracker";
 import logoIcon from "../../ui/assets/logo.svg"
+import Clock from "../services/Clock";
 
 class Variable {
     public ANIMATION_DURATION = 1000 * .2
@@ -70,23 +71,23 @@ yl8yJuhgZ/FJ6NU5dSVzRjkCAwEAAQ==
     }
 
     public bigManifestURL() {
-        return this.basePluginRepoURL() + 'bigManifest.json'
+        return this.basePluginRepoURL() + 'bigManifest.json' + '?t=' + Clock.getTimestamp()
     }
 
     public developerKitURL() {
-        return this.basePluginRepoURL() + 'developer-kit.zip'
+        return this.basePluginRepoURL() + 'developer-kit.zip' + '?t=' + Clock.getTimestamp()
     }
 
     public pluginDownloadURL({manifest}: {manifest: manifest}) {
-        return `${this.basePluginRepoURL()}${manifest.id}/${ReleaseTracker.getPluginLatestVersion({manifest})}/raw.json.tar.gz`
+        return `${this.basePluginRepoURL()}${manifest.id}/${ReleaseTracker.getPluginLatestVersion({manifest})}/raw.json.tar.gz` + '?t=' + Clock.getTimestamp()
     }
 
     public getSelfLatestVersionManifestURL() {
-        return this.baseSelfRepoURL() + 'version.json'
+        return this.baseSelfRepoURL() + 'versions.json' + '?t=' + Clock.getTimestamp()
     }
 
     public getSelfLatestScriptURL() {
-        return this.baseSelfRepoURL() + 'dist/acfun.evolved.bundle.min.user.js'
+        return this.baseSelfRepoURL() + 'dist/acfun.evolved.bundle.min.user.js' + '?t=' + Clock.getTimestamp()
     }
 
 }

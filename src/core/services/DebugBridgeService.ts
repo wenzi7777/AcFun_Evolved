@@ -33,7 +33,7 @@ class DebugBridgeService implements Service {
         if (this.hintTracker) {
             Manager.unmountUI({tracker: this.hintTracker})
         }
-        await PluginToolkit.uninstallBridgedPlugin()
+        PluginToolkit.uninstallBridgedPlugin()
     }
 
     insertHint() {

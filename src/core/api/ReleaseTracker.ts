@@ -27,7 +27,7 @@ class ReleaseTracker {
 
         let compareResult = Version.compareVersion({
             version1: Version.getCurrentVersion(),
-            version2: latestVersion.version + ' ' + latestVersionInfo.versionTag,
+            version2: latestVersionInfo.version + ' ' + latestVersionInfo.versionTag,
             target: Preferences.getPreference({category: 'general', k: 'updateRuntimeTo'}) as target
         })
 
@@ -43,12 +43,15 @@ class ReleaseTracker {
             url: Variable.bigManifestURL(),
         })
         let installedPlugins = PluginToolkit.getInstalledPlugins()
+        if (installedPlugins.length === 0) {
+            return []
+        }
         let pluginsData = JSON.parse(rawPluginsData as string)
-        let updatablePlugins = []
+        let updatablePlugins: any = []
         for (let pluginData of pluginsData) {
             for (let installedPlugin of installedPlugins) {
                 if (pluginData.id === installedPlugin.manifest.id) {
-                    if (pluginData.versions !== installedPlugin.manifest.versions) {
+                    if (pluginData.versions[pluginData.versions.length - 1] !== installedPlugin.manifest.versions[installedPlugin.manifest.versions.length - 1]) {
                         updatablePlugins.push({latestRelease: pluginData, currentRelease: installedPlugin})
                     }
                 }
@@ -66,14 +69,14 @@ class ReleaseTracker {
                 timestamp: Clock.getTimestamp()
             }
         })
-        IO.openPageInNewTab({
-            url: Variable.getSelfLatestScriptURL(),
-            manifest: Variable.MASTER_MANIFEST
-        })
+        window.open(Variable.getSelfLatestScriptURL())
     }
 
-    private updatePlugin({manifest, remainingUpdatablePlugins}: { manifest: manifest, remainingUpdatablePlugins: any }) {
-        if(remainingUpdatablePlugins.length === 0) {
+    private async updatePlugin({manifest, remainingUpdatablePlugins}: {
+        manifest: manifest,
+        remainingUpdatablePlugins: any
+    }) {
+        if (remainingUpdatablePlugins.length === 0) {
             ACEV2Storage.localSet({
                 k: 'pluginsUpdateRecord',
                 v: {
@@ -81,8 +84,8 @@ class ReleaseTracker {
                 }
             })
         }
-        PluginToolkit.uninstallPlugin({manifest})
-        PluginToolkit.downloadAndInstallPluginPack({manifest})
+        PluginToolkit.dangerUninstallPluginWithoutReloadAndNotice({manifest})
+        await PluginToolkit.dangerDownloadAndInstallPluginPackWithoutUserConfirm({manifest})
     }
 
     private timeToCheckSelfUpdate() {
@@ -159,7 +162,7 @@ class ReleaseTracker {
             if (result.compareResult < 0) {
                 ACEV2Dialog.showDialog({
                     title: I18n.t({key: 'version'}) + ' ' + result.latestVersionInfo.version + ' ' + result.latestVersionInfo.versionTag + ' ' + I18n.t({key: 'has-been-released'}),
-                    content: I18n.t({key: 'newer-runtime-version-has-been-released-please-consider-updating'}) + ' ' + I18n.t({key: 'current-version'}) + Version.getCurrentVersion(),
+                    content: I18n.t({key: 'newer-runtime-version-has-been-released-please-consider-updating'}) + ' ' + I18n.t({key: 'current-version'}) + ' ' + Version.getCurrentVersion() + ' ' + I18n.t({key: 'to'}) + ' ' + result.latestVersionInfo.version + ' ' + result.latestVersionInfo.versionTag,
                     okAction: () => this.updateSelf(),
                     cancelAction: () => {
                         ACEV2Toast.showToast({text: I18n.t({key: 'cancelled'})})
@@ -176,7 +179,15 @@ class ReleaseTracker {
                 ACEV2Dialog.showDialog({
                     title: I18n.t({key: 'newer-version-of'}) + ' ' + updatablePlugins[0].latestRelease.id + ' ' + I18n.t({key: 'has-been-released'}),
                     content: I18n.t({key: 'do-you-want-to-update-this-plugin-from'}) + ' ' + updatablePlugins[0].currentRelease.manifest.versions[updatablePlugins[0].currentRelease.manifest.versions.length - 1] + ' ' + I18n.t({key: 'to'}) + ' ' + updatablePlugins[0].latestRelease.versions[updatablePlugins[0].latestRelease.versions.length - 1],
-                    okAction: () => this.updatePlugin({manifest: updatablePlugins[0].latestRelease, remainingUpdatablePlugins: updatablePlugins.slice(1) as any}),
+                    okAction: async () => {
+                        await this.updatePlugin({
+                            manifest: updatablePlugins[0].latestRelease,
+                            remainingUpdatablePlugins: updatablePlugins.slice(1) as any
+                        })
+                    },
+                    cancelAction: () => {
+                        ACEV2Toast.showToast({text: I18n.t({key: 'cancelled'})})
+                    }
                 })
             }
         }
