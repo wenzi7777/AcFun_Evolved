@@ -4,7 +4,7 @@
 // @version         2.0.0
 // @author          Nick Hsu
 // @copyright       2024, Nick Hsu(wenzi7777@1205.moe)
-// @license         MPL 2.0
+// @license         MIT
 // @match           *://*.acfun.cn/*
 // @run-at          document-start
 // @grant           unsafeWindow
@@ -17,8 +17,8 @@
 // @connect         raw.githubusercontent.com
 // @connect         wenzi7777.github.io
 // @connect         cdn.jsdelivr.net
-// @connect         ace-plugins.1205.moe
-// @connect         ace.1205.moe
+// @connect         acev2-plugins.1205.moe
+// @connect         acev2.1205.moe
 // @connect         github.com
 // @connect         localhost
 // @connect         *
