@@ -4,6 +4,8 @@ import Preferences from "../core/api/Preferences";
 import ACEV2AboutUI from "./ACEV2AboutUI";
 import Variable from "../core/api/Variable";
 import ACEV2Dialog from "./ACEV2Dialog";
+import Version from "../core/api/Version";
+import IO from "../core/api/IO";
 
 class PreferenceUI implements UI {
     canvas: DataObject[] = []
@@ -317,6 +319,18 @@ class PreferenceUI implements UI {
                                                     {
                                                         type: 'sizer',
                                                         size: {
+                                                            width: 24,
+                                                            height: 3
+                                                        },
+                                                        children: [{
+                                                            type: 'button',
+                                                            text: Version.getFullVersion() + ' ' + I18n.t({key: 'changelog'}),
+                                                            actions: [() => IO.openPageInNewTab({url: Variable.selfReleaseURL(), manifest: Variable.MASTER_MANIFEST})]
+                                                        }]
+                                                    },
+                                                    {
+                                                        type: 'sizer',
+                                                        size: {
                                                             width: 8,
                                                             height: 3
                                                         },
@@ -334,6 +348,18 @@ class PreferenceUI implements UI {
                                                         },
                                                         children: [{
                                                             type: 'button',
+                                                            text: I18n.t({key: 'close'}),
+                                                            actions: [() => this.destroy()]
+                                                        }]
+                                                    },
+                                                    {
+                                                        type: 'sizer',
+                                                        size: {
+                                                            width: 10,
+                                                            height: 3
+                                                        },
+                                                        children: [{
+                                                            type: 'button',
                                                             text: I18n.t({key: 'save-and-reload'}),
                                                             actions: [() => ACEV2Dialog.showDialog({
                                                                 title: I18n.t({key: 'changes-will-take-effect-after-reload'}),
@@ -343,18 +369,6 @@ class PreferenceUI implements UI {
                                                                     location.reload()
                                                                 }
                                                             })]
-                                                        }]
-                                                    },
-                                                    {
-                                                        type: 'sizer',
-                                                        size: {
-                                                            width: 8,
-                                                            height: 3
-                                                        },
-                                                        children: [{
-                                                            type: 'button',
-                                                            text: I18n.t({key: 'close'}),
-                                                            actions: [() => this.destroy()]
                                                         }]
                                                     }
                                                 ]

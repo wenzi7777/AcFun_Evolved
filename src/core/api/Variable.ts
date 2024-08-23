@@ -44,7 +44,7 @@ yl8yJuhgZ/FJ6NU5dSVzRjkCAwEAAQ==
 -----END PUBLIC KEY-----`
     public PAGE_SIZE = 8
 
-    private baseSelfRepoURL() {
+    private baseSelfRepoResourcesURL() {
         let source = Preferences.getPreference({category: 'general', k: 'source'})
         if(source === 'github') {
             return 'https://raw.githubusercontent.com/wenzi7777/AcFun_Evolved/v2/'
@@ -70,6 +70,10 @@ yl8yJuhgZ/FJ6NU5dSVzRjkCAwEAAQ==
         }
     }
 
+    private baseSelfRepoURL() {
+        return 'https://github.com/wenzi7777/AcFun_Evolved/'
+    }
+
     public bigManifestURL() {
         return this.basePluginRepoURL() + 'bigManifest.json' + '?t=' + Clock.getTimestamp()
     }
@@ -83,11 +87,15 @@ yl8yJuhgZ/FJ6NU5dSVzRjkCAwEAAQ==
     }
 
     public getSelfLatestVersionManifestURL() {
-        return this.baseSelfRepoURL() + 'versions.json' + '?t=' + Clock.getTimestamp()
+        return this.baseSelfRepoResourcesURL() + 'versions.json' + '?t=' + Clock.getTimestamp()
     }
 
     public getSelfLatestScriptURL() {
-        return this.baseSelfRepoURL() + 'dist/acfun.evolved.bundle.min.user.js' + '?t=' + Clock.getTimestamp()
+        return this.baseSelfRepoResourcesURL() + 'dist/acfun.evolved.bundle.min.user.js' + '?t=' + Clock.getTimestamp()
+    }
+
+    public selfReleaseURL() {
+        return this.baseSelfRepoURL() + 'releases'
     }
 
 }
