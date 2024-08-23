@@ -3,6 +3,7 @@ import I18n from "../core/api/I18n";
 import Preferences from "../core/api/Preferences";
 import ACEV2AboutUI from "./ACEV2AboutUI";
 import Variable from "../core/api/Variable";
+import ACEV2Dialog from "./ACEV2Dialog";
 
 class PreferenceUI implements UI {
     canvas: DataObject[] = []
@@ -52,6 +53,8 @@ class PreferenceUI implements UI {
                                                     display: 'flex',
                                                     flexWrap: 'wrap',
                                                     gap: '1vw',
+                                                    justifyContent: 'flex-start',
+                                                    alignItems: 'center',
                                                 },
                                                 children: [
                                                     {
@@ -156,6 +159,8 @@ class PreferenceUI implements UI {
                                                     display: 'flex',
                                                     flexWrap: 'wrap',
                                                     gap: '1vw',
+                                                    justifyContent: 'flex-start',
+                                                    alignItems: 'center',
                                                 },
                                                 children: [
                                                     {
@@ -206,6 +211,8 @@ class PreferenceUI implements UI {
                                                     display: 'flex',
                                                     flexWrap: 'wrap',
                                                     gap: '1vw',
+                                                    justifyContent: 'flex-start',
+                                                    alignItems: 'center',
                                                 },
                                                 children: [
                                                     {
@@ -283,8 +290,8 @@ class PreferenceUI implements UI {
                                         children: [
                                             {
                                                 type: 'text',
-                                                label: 'Hint',
-                                                text: 'Please note that some settings may require a restart to take effect.',
+                                                label: I18n.t({key: 'note'}),
+                                                text: I18n.t({key: 'please-notice-that-some-preferences-need-to-reload-the-page-to-take-effect'}),
                                             }
                                         ]
                                     },
@@ -327,10 +334,27 @@ class PreferenceUI implements UI {
                                                         },
                                                         children: [{
                                                             type: 'button',
-                                                            text: I18n.t({key: 'ok'}),
-                                                            actions: [() => {
-                                                                this.destroy()
-                                                            }]
+                                                            text: I18n.t({key: 'save-and-reload'}),
+                                                            actions: [() => ACEV2Dialog.showDialog({
+                                                                title: I18n.t({key: 'changes-will-take-effect-after-reload'}),
+                                                                content: I18n.t({key: 'reload-now'}),
+                                                                okAction: () => {
+                                                                    this.destroy()
+                                                                    location.reload()
+                                                                }
+                                                            })]
+                                                        }]
+                                                    },
+                                                    {
+                                                        type: 'sizer',
+                                                        size: {
+                                                            width: 8,
+                                                            height: 3
+                                                        },
+                                                        children: [{
+                                                            type: 'button',
+                                                            text: I18n.t({key: 'close'}),
+                                                            actions: [() => this.destroy()]
                                                         }]
                                                     }
                                                 ]

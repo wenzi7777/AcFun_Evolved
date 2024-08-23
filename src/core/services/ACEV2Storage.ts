@@ -55,17 +55,17 @@ class ACEV2Storage implements Service {
             local: this.readLocal({outputType: 'JSON'}) as DataObject[]
         }
         if (!_storage.monkey.pluginData || !_storage.monkey.plugins || !_storage.monkey.preferences) {
-            this.setDefaultValue()
+            await this.setDefaultValue()
         }
         if (!_storage.local) {
-            this.setDefaultValue()
+            await this.setDefaultValue()
         }
     }
 
-    setDefaultValue() {
+    async setDefaultValue() {
         this.runtimeStorage = this.defaultValue
         this.saveLocal()
-        this.saveMonkey()
+        await this.saveMonkey()
     }
 
     localSet({k, v}: { k: string, v: object }) {

@@ -3,7 +3,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -37,17 +37,17 @@
 
 /* 黑夜模式样式 */
 .aceWindowWrapper.aceDark {
-    background-color: rgba(48, 58, 65, 1);
-    box-shadow: 0 4px 8px rgba(48, 58, 65, 0.5);
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(68, 68, 68, 0.3);
 }
 
 .aceWindowWrapper.aceDark:hover {
-    box-shadow: 0 8px 16px rgba(48, 58, 65, 0.7);
+    box-shadow: 0 8px 16px rgba(68, 68, 68, 0.7);
 }
 
 .aceWindowWrapper.aceDark .aceWindowTitleBar {
-    background-color: rgba(48, 58, 65, 1);
-    border-bottom: 1px solid #444;
+    background-color: #444;
+    border-bottom: 1px solid #555;
 }
 
 .aceWindowWrapper.aceDark .aceWindowTitle {
@@ -55,6 +55,6 @@
 }
 
 .aceWindowWrapper.aceDark .aceWindowContent {
-    background-color: rgba(48, 58, 65, 1);
+    background-color: #333;
     color: #f7f7f7;
 }

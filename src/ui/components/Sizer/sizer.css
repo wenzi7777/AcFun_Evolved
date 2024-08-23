@@ -5,7 +5,7 @@
     transform: translate(-50%, 0) scale(0.8);
     opacity: 0;
     pointer-events: none;
-    transition: opacity .2s ease-out, transform .2s ease-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+    transition: opacity .2s ease-out, transform .2s ease-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .aceSizer.ani {
@@ -46,20 +46,20 @@
 }
 
 /* 黑夜模式样式 */
-.aceSizer.aceDark .aceSizerFilled {
-    background-color: rgba(48, 58, 65, 1);
-    box-shadow: 0 4px 8px rgba(48, 58, 65, .5);
-}
-
-.aceSizer.aceDark .aceSizerFilled:hover {
-    box-shadow: 0 8px 16px rgba(48, 58, 65, .7);
-}
-
 .aceSizer.aceDark .aceSizerDragHandler {
     background-color: #555;
 }
 
 .aceSizer.aceDark .aceSizerDragHandler:hover {
-    background-color: #333;
+    background-color: #222;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+.aceSizerFilled.aceDark {
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(68, 68, 68, 0.3);
+}
+
+.aceSizerFilled.aceDark:hover {
+    box-shadow: 0 8px 16px rgba(68, 68, 68, 0.7);
 }

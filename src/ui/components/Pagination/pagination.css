@@ -6,6 +6,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+    border-radius: 12px;
 }
 
 .acePaginationButton {
@@ -57,7 +58,7 @@
 
 /* 黑夜模式样式 */
 .acePaginationContainer.aceDark {
-    background-color: #1c1c1e;
+    background-color: #444;
 }
 
 .acePaginationContainer.aceDark .acePaginationButton {

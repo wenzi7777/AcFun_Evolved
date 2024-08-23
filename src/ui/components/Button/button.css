@@ -18,11 +18,11 @@
 
 /* 黑夜模式样式 */
 .aceButton.aceDark {
-    background-color: #1c1c1e;
+    background-color: #444;
     color: #f7f7f7;
 }
 
 .aceButton.aceDark.hovered {
-    background-color: #333335;
+    background-color: #222;
     transform: scale(1.05);
 }

@@ -57,7 +57,6 @@ class DebugBridgeService implements Service {
                     events: [
                         {
                             event: 'click',
-                            // handler: () => PluginToolkit.uninstallBridgedPlugin()
                             handler: () => DebugBridge.renderConfigurePanel()
                         }
                     ],

@@ -49,13 +49,14 @@ class PluginToolkit {
             }
         } catch (e) {
             ACEV2Toast.showToast({text: I18n.t({key: 'psv-check-failed-installation-denied'})});
+            Logger.error({message: JSON.stringify(e)});
         }
         if (!psvResult) {
-            ACEV2Toast.showToast({text: `安装被拒绝, 此插件「${pluginPack.manifest.id}」未通过PSV检查。`});
+            ACEV2Toast.showToast({text: `${I18n.t({key: 'plugin'})} 「${pluginPack.manifest.id}」 ${I18n.t({key: 'psv-check-failed-installation-denied'})}`});
             return;
         }
         if (this.checkIfInstalled({pluginPack})) {
-            ACEV2Toast.showToast({text: `安装被拒绝, 此插件「${pluginPack.manifest.id}」已经安装。`});
+            ACEV2Toast.showToast({text: `${I18n.t({key: 'plugin'})} 「${pluginPack.manifest.id}」 ${I18n.t({key: 'this-plugin-is-already-installed'})}`});
             return;
         }
         if (bridged) {

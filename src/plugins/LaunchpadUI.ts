@@ -126,7 +126,7 @@ class LaunchpadUI implements UI {
     generateIcon({manifest}: { manifest: manifest }) {
         const icon = manifest.icon;
         const isSVG = icon.startsWith('<svg');
-        const isDefaultIcon = icon === 'default';
+        const isDefaultIcon = icon === 'defaultIcon';
         const src = isSVG ? icon : isDefaultIcon ? defaultIcon : icon;
         return {
             type: 'sizer',
@@ -220,7 +220,7 @@ class LaunchpadUI implements UI {
                                     children: handler === '' ? [{
                                         type: 'text',
                                         label: I18n.t({key: 'welcome-to'}) + ' ' + manifest.name,
-                                        text: I18n.t({key: 'this-plugin-does-not-support-interactive-ui'})
+                                        text: I18n.t({key: 'this-plugin-does-not-support-interactive-ui-use-preferences-to-configure-its-behavior'})
                                     }] : []
                                 },
                                 {
@@ -371,7 +371,7 @@ class LaunchpadUI implements UI {
                                     children: handler === '' ? [{
                                         type: 'text',
                                         label: I18n.t({key: 'welcome-to'}) + ' ' + manifest.name,
-                                        text: I18n.t({key: 'this-plugin-does-not-support-interactive-ui'})
+                                        text: I18n.t({key: 'this-plugin-does-not-support-interactive-ui-use-preferences-to-configure-its-behavior'})
                                     }] : []
                                 },
                                 {

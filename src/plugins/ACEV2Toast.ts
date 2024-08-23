@@ -13,11 +13,8 @@ class ACEV2Toast implements UI {
                 size: {width: 100, height: 4},
                 styleObject: {
                     zIndex: 99,
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #ccc',
-                    borderRadius: '4px',
-                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                 },
+                filled: true,
                 children: [
                     {
                         type: 'sizer',

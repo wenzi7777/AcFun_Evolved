@@ -5,7 +5,7 @@ const Image = ({ src, alt, asHTML = false, dark }: ImageProps) => {
     return (
         <div className={`aceImageWrapper ${dark ? 'aceDark' : ''}`}>
             {
-                asHTML ? <div dangerouslySetInnerHTML={{ __html: src }} /> : <img className="aceImage" src={src} alt={alt} />
+                asHTML ? <div className="aceSvgIcon" dangerouslySetInnerHTML={{ __html: src }} /> : <img className="aceImage" src={src} alt={alt} />
             }
         </div>
     );

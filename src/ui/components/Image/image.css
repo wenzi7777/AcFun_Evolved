@@ -15,14 +15,27 @@
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
+    filter: invert(17%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(90%) contrast(85%);
+}
+
+.aceSvgIcon {
+    fill: #333333;
 }
 
 /* 黑夜模式样式 */
 .aceImageWrapper.aceDark {
-    background-color: rgba(48, 58, 65, 1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: #444;
+    box-shadow: 0 4px 8px rgba(68, 68, 68, 0.3);
 }
 
 .aceImageWrapper.aceDark:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 16px rgba(68, 68, 68, 0.7);
+}
+
+.aceImageWrapper.aceDark .aceSvgIcon {
+    fill: #fff;
+}
+
+.aceImageWrapper.aceDark .aceImage {
+    filter: invert(100%) brightness(100%);
 }

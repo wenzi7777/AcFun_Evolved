@@ -66,7 +66,7 @@ class PluginStore {
                 children: this.bigManifest?.map((item: manifest) => {
                     const icon = item.icon;
                     const isSVG = icon.startsWith('<svg');
-                    const isDefaultIcon = icon === 'default';
+                    const isDefaultIcon = icon === 'defaultIcon';
                     const src = isSVG ? icon : isDefaultIcon ? defaultIcon : icon;
                     return {
                         type: 'sizer',
@@ -139,7 +139,7 @@ class PluginStore {
     openDetailsPanel({manifest}: { manifest: manifest }) {
         const icon = manifest.icon;
         const isSVG = icon.startsWith('<svg');
-        const isDefaultIcon = icon === 'default';
+        const isDefaultIcon = icon === 'defaultIcon';
         const src = isSVG ? icon : isDefaultIcon ? defaultIcon : icon;
         let detailPanelTracker: tracker = Manager.renderUI({
             canvas: [

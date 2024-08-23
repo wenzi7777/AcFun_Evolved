@@ -92,8 +92,7 @@ const drawPagination = ({currentPage, totalPages, onPageChange}: PaginationProps
 
 const drawPlainText = ({text, styleObject}: PlainTextProps): JSX.Element => {
     let darkStyle = {
-        color: Preferences.isDarkMode() ? 'white' : 'rgba(48, 58, 65, 1)',
-        backgroundColor: Preferences.isDarkMode() ? 'rgba(48, 58, 65, 1)' : 'white'
+        color: Preferences.isDarkMode() ? '#fff' : '#333'
     }
 
     return <p style={{
