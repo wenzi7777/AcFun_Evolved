@@ -112,7 +112,6 @@ module.exports = {
 // @connect         github.com
 // @connect         localhost
 // @connect         *
-// @require         https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
 // ==/UserScript==`,
             raw: true,
             entryOnly: true,
