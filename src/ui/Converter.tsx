@@ -55,7 +55,7 @@ const convertItem = ({item}: { item: any }): JSX.Element => {
         case 'audio':
             return Painter.drawAudio({src: item.src});
         case 'link':
-            return Painter.drawLink({label: item.label, href: item.href});
+            return Painter.drawLink({label: item.label, href: item.href, manifest: item.manifest});
         case 'pagination':
             return Painter.drawPagination({
                 currentPage: item.currentPage,

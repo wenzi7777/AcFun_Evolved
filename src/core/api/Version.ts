@@ -5,7 +5,7 @@ class Version {
 
     constructor() {
         this.currentVersion = '2.0.0';
-        this.versionTag = 'Developer Beta';
+        this.versionTag = 'Developer Stable';
         this.environment = 'Development';
     }
 

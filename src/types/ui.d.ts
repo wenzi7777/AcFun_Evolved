@@ -53,6 +53,7 @@ interface LinkProps {
     label: string;
     dark?: boolean,
     href: string;
+    manifest: manifest
 }
 
 interface RangeProps {

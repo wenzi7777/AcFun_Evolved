@@ -47,7 +47,6 @@ class DebugBridge {
         IPC.listen({channel: 'runtime:launchpad', handler: (data) => this.render(data), manifest: this.manifest})
     }
 
-
     async updateCanvas() {
         this.canvas = [
             {

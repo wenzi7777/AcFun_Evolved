@@ -82,8 +82,8 @@ const drawAudio = ({src}: AudioProps): JSX.Element => {
     return <Audio dark={Preferences.isDarkMode()} src={src}/>;
 }
 
-const drawLink = ({label, href}: LinkProps): JSX.Element => {
-    return <Link dark={Preferences.isDarkMode()} label={label} href={href}/>;
+const drawLink = ({label, href, manifest}: LinkProps): JSX.Element => {
+    return <Link dark={Preferences.isDarkMode()} label={label} href={href} manifest={manifest}/>;
 }
 
 const drawPagination = ({currentPage, totalPages, onPageChange}: PaginationProps): JSX.Element => {

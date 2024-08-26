@@ -79,7 +79,7 @@ yl8yJuhgZ/FJ6NU5dSVzRjkCAwEAAQ==
     }
 
     public developerKitURL() {
-        return this.basePluginRepoURL() + 'developer-kit.zip' + '?t=' + Clock.getTimestamp()
+        return 'https://github.com/wenzi7777/acev2_developerkit/archive/refs/heads/main.zip' + '?t=' + Clock.getTimestamp()
     }
 
     public pluginDownloadURL({manifest}: {manifest: manifest}) {

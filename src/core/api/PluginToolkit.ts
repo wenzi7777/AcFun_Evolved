@@ -15,6 +15,8 @@ import {untar} from "untar.js"
 import ACEV2DOM from "./ACEV2DOM";
 import Variable from "./Variable";
 import IO from "./IO";
+import IPC from "../services/IPC";
+import {Manager} from "../../ui/Manager";
 
 class PluginToolkit {
     private tombstones: tombstone[] = []
@@ -36,6 +38,17 @@ class PluginToolkit {
         ACEV2DOM: {
             injectHTML: ({HTMLCode}: { HTMLCode: string }) => ACEV2DOM.injectHTML({HTMLCode}),
             removeHTML: ({tracker}: { tracker: string }) => ACEV2DOM.removeElement({tracker})
+        },
+        UIKit: {
+            receiveHandler: ({manifest, callback}: {
+                manifest: manifest,
+                callback: Function
+            }) => this.receiveUIHandler({manifest, callback}),
+            renderUI: ({canvas, slot}: {
+                canvas: canvas,
+                slot: 'root' | 'sideMenu' | 'plugins' | tracker
+            }) => Manager.renderUI({canvas, slot}),
+            unmountUI: ({tracker}: { tracker: tracker }) => Manager.unmountUI({tracker})
         }
     }
 
@@ -236,7 +249,6 @@ class PluginToolkit {
                         try {
                             Logger.info({message: `executed ${manifest.id}`})
                             const targetFunction = new Function(...args.map((arg: any) => arg.name), 'manifest', 'getSelfPreference', self);
-                            // const targetFunction = new Function(...args.map((arg: any) => arg.name), 'manifest', `(()=>{"use strict";(async()=>{console.log('-------------------')})();`);
                             targetFunction(...args.map((arg: any) => arg.target), manifest, ({manifest}: {
                                 manifest: manifest
                             }) => this.getSelfPreference({manifest}));
@@ -346,6 +358,21 @@ class PluginToolkit {
             console.error('解压缩失败', err);
         }
         ACEV2Loader.destroy()
+    }
+
+    receiveUIHandler({manifest, callback}: { manifest: manifest, callback: Function }) {
+        let __callback = (data: {
+            type: string,
+            manifest: manifest,
+            handler?: tracker
+        }) => {
+            if (data.type === 'pluginStarted') {
+                if (data.manifest.id === manifest.id) {
+                    callback(data)
+                }
+            }
+        }
+        IPC.listen({channel: 'runtime:launchpad', handler: (data) => __callback(data), manifest: manifest})
     }
 }
 
