@@ -12,7 +12,7 @@ class ACEV2Loader implements UI {
                 position: {top: 48, left: 0},
                 size: {width: 100, height: 4},
                 styleObject: {
-                    zIndex: 99,
+                    zIndex: 2739,
                 },
                 filled: true,
                 children: [

@@ -399,7 +399,7 @@ class DebugBridge {
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '1vh',
-                        zIndex: 100,
+                        zIndex: 2740,
                     },
                     draggable: true,
                     size: {

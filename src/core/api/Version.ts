@@ -4,9 +4,9 @@ class Version {
     private environment: environment
 
     constructor() {
-        this.currentVersion = '2.0.0';
-        this.versionTag = 'Developer Stable';
-        this.environment = 'Development';
+        this.currentVersion = '2.0.1';
+        this.versionTag = 'Public Stable';
+        this.environment = 'Production';
     }
 
     getCurrentVersion(): string {

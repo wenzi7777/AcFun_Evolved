@@ -40,10 +40,10 @@ class PluginStore {
     }
 
     async getBigManifest() {
-        this.bigManifest = await IO.getJson({url: Variable.bigManifestURL()})
-        let items = this.bigManifest?.length
-        this.totalPages = Math.ceil(items || 1 / Variable.PAGE_SIZE)
-        this.currentPage = 1
+        this.bigManifest = await IO.getJson({ url: Variable.bigManifestURL() });
+        let items = this.bigManifest?.length || 0;
+        this.totalPages = Math.ceil(items / Variable.PAGE_SIZE);
+        this.currentPage = 1;
     }
 
     async updateCanvas({currentPage, totalPages}: { currentPage?: number, totalPages?: number }) {
@@ -146,7 +146,7 @@ class PluginStore {
                 {
                     type: 'sizer',
                     styleObject: {
-                        zIndex: 99,
+                        zIndex: 2739,
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
@@ -174,13 +174,15 @@ class PluginStore {
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
+                                        gap: '2vw'
                                     },
                                     children: [
                                         {
                                             type: 'sizer',
                                             styleObject: {
                                                 width: '32px',
-                                                height: '32px'
+                                                height: '32px',
+                                                overflow: 'hidden'
                                             },
                                             children: [
                                                 {

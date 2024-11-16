@@ -62,7 +62,7 @@ yl8yJuhgZ/FJ6NU5dSVzRjkCAwEAAQ==
         if(source === 'github') {
             return 'https://raw.githubusercontent.com/wenzi7777/acev2_plugins/main/'
         }else if(source === 'cloudflare') {
-            return 'https://acev2-plugins.1205.moe'
+            return 'https://acev2-plugins.1205.moe/'
         }else if(source === 'jsdelivr') {
             return 'https://cdn.jsdelivr.net/gh/wenzi7777/acev2_plugins/@main/'
         }else {

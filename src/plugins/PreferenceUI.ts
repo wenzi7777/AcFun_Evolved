@@ -16,7 +16,7 @@ class PreferenceUI implements UI {
             {
                 type: 'sizer',
                 styleObject: {
-                    zIndex: 99,
+                    zIndex: 2739,
                     position: 'absolute',
                     left: '50%',
                     top: '50%',
